@@ -1,0 +1,11 @@
+# mac
+.DS_Store
+
+# windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# patches
+/*.patch
+/*.diff
