@@ -144,8 +144,8 @@ MonoBehaviour:
   relHoriz: {fileID: 1755352568309836, guid: 56935f57640eb447895616c10319a4dd, type: 2}
   relVert: {fileID: 1480308117497642, guid: e6f02de0175bb4b17a4bcd6d85208b49, type: 2}
   origin: {x: 0, y: 0}
-  spacingX: 2
-  spacingY: 2
+  spacingX: 1.5
+  spacingY: 2.5
 --- !u!4 &596316568
 Transform:
   m_ObjectHideFlags: 0
