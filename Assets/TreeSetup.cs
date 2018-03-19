@@ -7,22 +7,64 @@ public class TreeSetup : MonoBehaviour {
 	// basic node
 	public GameObject member;
 	// possible ties
-	public GameObject relSpouse;
-	public GameObject relHoriz;
-	public GameObject relVert;
+	//public GameObject relSpouse; 	// OLD
+	//public GameObject relHoriz;	// OLD
+	//public GameObject relVert;	// OLD
+	public GameObject tieNarrow3;	// initially designed for ego and ego's siblings
+	public GameObject tieNarrow2; 	// initially designed for cousins
+	public GameObject tieWide3; 	// initially designed for one generation up
+	public GameObject tieSpouse; 	// initially designed for ego's parents
 
 	// positioning
-	public Vector2 origin; 					// ego
+	public Vector2 origin;
 	[Range(0f,4f)]public float spacingX;
 	[Range(0f,4f)]public float spacingY;
 
 	void Awake () {
-		this.placeMembers ();
+		Dictionary<string, GameObject> fam = this.placeMembers ();
+		this.placeTies (fam);
+	}
+
+	// Handpicked placement of family ties
+	// TODO connect dynamically based on node properties
+	void placeTies(Dictionary<string, GameObject> family) {
+
+		// OLD nuclear family with primitives
+		// tie ego to siblings and parents
+		//GameObject.Instantiate (relHoriz, new Vector2(family ["ego"].transform.position.x - (spacingX * 0.5f), family["ego"].transform.position.y + spacingY * 0.5f), Quaternion.identity);
+		//GameObject.Instantiate (relHoriz, new Vector2(family ["ego"].transform.position.x + (spacingX * 0.5f), family["ego"].transform.position.y + spacingY * 0.5f), Quaternion.identity);
+		//GameObject.Instantiate (relHoriz, new Vector2(family ["ego"].transform.position.x, family["ego"].transform.position.y + spacingY * 0.5f), Quaternion.identity);
+		// downward connector to link parents to children
+		//GameObject.Instantiate (relVert, new Vector2(family ["ego"].transform.position.x, family["ego"].transform.position.y + spacingY * 0.75f), relVert.transform.rotation);
+		//GameObject.Instantiate (relSpouse, new Vector2(family ["ego"].transform.position.x, family["ego"].transform.position.y + spacingY), relSpouse.transform.rotation);
+
+		// TODO or more advanced: flip an elbow connector for L/R siblings
+
+		// tie ego to siblings
+		GameObject.Instantiate (tieNarrow3, new Vector2(family ["ego"].transform.position.x, family["ego"].transform.position.y + spacingY * 0.5f), tieNarrow3.transform.rotation);
+
+		// tie ego's parents
+		GameObject.Instantiate (tieSpouse, new Vector2(family ["ego"].transform.position.x, family["ego"].transform.position.y + spacingY), tieSpouse.transform.rotation);
+
+		// tie ego's aunts and uncles
+		GameObject.Instantiate (tieWide3, new Vector2(family ["mb"].transform.position.x, family["mb"].transform.position.y + spacingY * 0.5f), tieWide3.transform.rotation);
+		GameObject fbTie = GameObject.Instantiate (tieWide3, new Vector2(family ["fb"].transform.position.x, family["fb"].transform.position.y + spacingY * 0.5f), tieWide3.transform.rotation) as GameObject;
+		fbTie.GetComponent<SpriteRenderer> ().flipX = true;
+
+		// tie ego's grandparents
+		GameObject.Instantiate (tieSpouse, new Vector2(family ["mf"].transform.position.x + spacingX * 0.75f, family["mf"].transform.position.y), tieSpouse.transform.rotation);
+		GameObject.Instantiate (tieSpouse, new Vector2(family ["fm"].transform.position.x - spacingX * 0.75f, family["fm"].transform.position.y), tieSpouse.transform.rotation);
+
+		// tie ego's cousins
+		GameObject.Instantiate (tieNarrow2, new Vector2(family ["mb"].transform.position.x, family["mb"].transform.position.y - spacingY * 0.5f), tieNarrow2.transform.rotation);
+		GameObject.Instantiate (tieNarrow2, new Vector2(family ["mz"].transform.position.x, family["mz"].transform.position.y - spacingY * 0.5f), tieNarrow2.transform.rotation);
+		GameObject.Instantiate (tieNarrow2, new Vector2(family ["fb"].transform.position.x, family["fb"].transform.position.y - spacingY * 0.5f), tieNarrow2.transform.rotation);
+		GameObject.Instantiate (tieNarrow2, new Vector2(family ["fz"].transform.position.x, family["fz"].transform.position.y - spacingY * 0.5f), tieNarrow2.transform.rotation);
 	}
 
 	// Handpicked placement of family members on "board"
-	// TODO place and connect dynamically based on node properties
-	void placeMembers() {
+	// TODO place dynamically based on node properties
+	Dictionary<string, GameObject> placeMembers() {
 		// ego
 		GameObject ego = GameObject.Instantiate (member, origin, Quaternion.identity) as GameObject;
 		// ego's siblings
@@ -72,6 +114,30 @@ public class TreeSetup : MonoBehaviour {
 		GameObject fzs = GameObject.Instantiate (member, fzsPos, Quaternion.identity) as GameObject;
 		Vector2 fzdPos = new Vector2(fz.transform.position.x + (spacingX * 0.5f), fz.transform.position.y - spacingY);
 		GameObject fzd = GameObject.Instantiate (member, fzdPos, Quaternion.identity) as GameObject;
+
+		Dictionary<string, GameObject> familyMembers = new Dictionary<string, GameObject> ();
+		familyMembers.Add ("ego", ego);
+		familyMembers.Add ("b", b);
+		familyMembers.Add ("z", z);
+		familyMembers.Add ("f", f);
+		familyMembers.Add ("m", m);
+		familyMembers.Add ("mm", mm);
+		familyMembers.Add ("mf", mf);
+		familyMembers.Add ("ff", ff);
+		familyMembers.Add ("fm", fm);
+		familyMembers.Add ("mb", mb);
+		familyMembers.Add ("mz", mz);
+		familyMembers.Add ("fb", fb);
+		familyMembers.Add ("fz", fz);
+		familyMembers.Add ("mbs", mbs);
+		familyMembers.Add ("mbd", mbd);
+		familyMembers.Add ("mzs", mzs);
+		familyMembers.Add ("mzd", mzd);
+		familyMembers.Add ("fbs", fbs);
+		familyMembers.Add ("fbd", fbd);
+		familyMembers.Add ("fzs", fzs);
+		familyMembers.Add ("fzd", fzd);
+		return familyMembers;
 	}
 
 }

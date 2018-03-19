@@ -140,9 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   member: {fileID: 1572574017005482, guid: 8c57416f029d941059c1fd0730520564, type: 2}
-  relSpouse: {fileID: 1985285627923292, guid: 9ebccaa8f05e54b03b5493900470a77b, type: 2}
-  relHoriz: {fileID: 1755352568309836, guid: 56935f57640eb447895616c10319a4dd, type: 2}
-  relVert: {fileID: 1480308117497642, guid: e6f02de0175bb4b17a4bcd6d85208b49, type: 2}
+  tieNarrow3: {fileID: 1195330806842332, guid: c93500c53dd894a10aa28fb180b1dff7, type: 2}
+  tieNarrow2: {fileID: 1620011180663370, guid: 349dd935114934edbb81c12a2d30dc79, type: 2}
+  tieWide3: {fileID: 1024150932143450, guid: 1acfe3a37ebf440488d55259ed4a0a1f, type: 2}
+  tieSpouse: {fileID: 1727066097725236, guid: 9e8ed9da59387414eb2d68bbcc586111, type: 2}
   origin: {x: 0, y: 0}
   spacingX: 1.5
   spacingY: 2.5
