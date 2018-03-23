@@ -6,23 +6,25 @@ public class TreeSetup : MonoBehaviour {
 
 	// basic node
 	public GameObject member;
-	// possible ties
-	//public GameObject relSpouse; 	// OLD
-	//public GameObject relHoriz;	// OLD
-	//public GameObject relVert;	// OLD
-	public GameObject tieNarrow3;	// initially designed for ego and ego's siblings
-	public GameObject tieNarrow2; 	// initially designed for cousins
-	public GameObject tieWide3; 	// initially designed for one generation up
-	public GameObject tieSpouse; 	// initially designed for ego's parents
+
+	// ties between nodes
+	public GameObject tieNarrow3;	// designed for ego and ego's siblings
+	public GameObject tieNarrow2; 	// designed for cousins
+	public GameObject tieWide3; 	// designed for one generation up
+	public GameObject tieSpouse; 	// designed for ego's parents
+
+	// family nodes manager
+	public NodesManager nodesManager;
 
 	// positioning
 	public Vector2 origin;
 	[Range(0f,4f)]public float spacingX;
 	[Range(0f,4f)]public float spacingY;
 
-	void Awake () {
+	void Start () {
 		Dictionary<string, GameObject> fam = this.placeMembers ();
 		this.placeTies (fam);
+		nodesManager.SetFamily (fam);
 	}
 
 	// Handpicked placement of family ties
