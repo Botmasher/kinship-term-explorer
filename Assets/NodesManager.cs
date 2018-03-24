@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using System.IO;
+using SimpleJSON;
 
 public class NodesManager : MonoBehaviour {
 
@@ -10,33 +13,97 @@ public class NodesManager : MonoBehaviour {
 	// sample data
 	Dictionary<string, string> testTerms = new Dictionary<string, string> ();
 
+	// sample JSON serialization classes - used to test deserialization in Start()
+	RootObject labelsData;
+	[System.Serializable]
+	public class CompoundTerm {
+//		public object this[string propertyName] {
+//			get{                  
+//				PropertyInfo propInfo = typeof(CompoundTerm).GetProperty(propertyName);
+//				return propInfo.GetValue(this, null);
+//			}
+//			set{                  
+//				PropertyInfo propInfo = typeof(CompoundTerm).GetProperty(propertyName);
+//				propInfo.SetValue(this, value, null);
+//			}
+//		}
+		public string English;
+		public string Japanese;
+	}
+	[System.Serializable]
+	public class RootObject {
+//		public object this[string propertyName] {
+//			get{                  
+//				PropertyInfo propertyInfo = typeof(RootObject).GetProperty(propertyName);
+//				return propertyInfo.GetValue(this, null);
+//			}
+//			set{                  
+//				PropertyInfo propertyInfo = typeof(RootObject).GetProperty(propertyName);
+//				propertyInfo.SetValue(this, value, null);
+//			}
+//		}
+		public CompoundTerm M;
+		public CompoundTerm F;
+		public CompoundTerm Z;
+		public CompoundTerm B;
+		public CompoundTerm MB;
+		public CompoundTerm MZ;
+		public CompoundTerm FB;
+		public CompoundTerm FZ;
+		public CompoundTerm MF;
+		public CompoundTerm MM;
+		public CompoundTerm FF;
+		public CompoundTerm FM;
+		public CompoundTerm FBS;
+		public CompoundTerm FBD;
+		public CompoundTerm FZS;
+		public CompoundTerm FZD;
+		public CompoundTerm MBS;
+		public CompoundTerm MBD;
+		public CompoundTerm MZS;
+		public CompoundTerm MZD;
+	}
+
 	// map for relating same terms to same colors
 	Dictionary<string, Color> assignedColors;
 	List<Color> colors;
 
-	void Awake () {
+	void Start () {
 		// fill test data
-		testTerms.Add ("ego", "you");
-		testTerms.Add ("b", "brother");
-		testTerms.Add ("z", "sister");
-		testTerms.Add ("f", "father");
-		testTerms.Add ("m", "mother");
-		testTerms.Add ("mb", "uncle");
-		testTerms.Add ("mz", "aunt");
-		testTerms.Add ("fb", "uncle");
-		testTerms.Add ("fz", "aunt");
-		testTerms.Add ("mf", "grandfather");
-		testTerms.Add ("mm", "grandmother");
-		testTerms.Add ("ff", "grandfather");
-		testTerms.Add ("fm", "grandmother");
-		testTerms.Add ("fbs", "cousin");
-		testTerms.Add ("fbd", "cousin");
-		testTerms.Add ("fzs", "cousin");
-		testTerms.Add ("fzd", "cousin");
-		testTerms.Add ("mbs", "cousin");
-		testTerms.Add ("mbd", "cousin");
-		testTerms.Add ("mzs", "cousin");
-		testTerms.Add ("mzd", "cousin");
+//		testTerms.Add ("ego", "you");
+//		testTerms.Add ("b", "brother");
+//		testTerms.Add ("z", "sister");
+//		testTerms.Add ("f", "father");
+//		testTerms.Add ("m", "mother");
+//		testTerms.Add ("mb", "uncle");
+//		testTerms.Add ("mz", "aunt");
+//		testTerms.Add ("fb", "uncle");
+//		testTerms.Add ("fz", "aunt");
+//		testTerms.Add ("mf", "grandfather");
+//		testTerms.Add ("mm", "grandmother");
+//		testTerms.Add ("ff", "grandfather");
+//		testTerms.Add ("fm", "grandmother");
+//		testTerms.Add ("fbs", "cousin");
+//		testTerms.Add ("fbd", "cousin");
+//		testTerms.Add ("fzs", "cousin");
+//		testTerms.Add ("fzd", "cousin");
+//		testTerms.Add ("mbs", "cousin");
+//		testTerms.Add ("mbd", "cousin");
+//		testTerms.Add ("mzs", "cousin");
+//		testTerms.Add ("mzd", "cousin");
+
+		// sample JSON deserialization
+		string path = Path.Combine("_data", "test");
+		TextAsset jsonFile = Resources.Load<TextAsset> (path); 	// 	./Assets/Resources/_data/test.json
+		this.labelsData = JsonUtility.FromJson <RootObject> (jsonFile.text);
+
+		Debug.Log(labelsData.Z.English);
+		Debug.Log(labelsData.B.English);
+
+		// test using SimpleJSON instead
+		var parsedJSONForBracketing = JSON.Parse(jsonFile.text);
+		Debug.Log (parsedJSONForBracketing["M"]["English"].Value);
+
 	}
 
 	public void SetFamily (Dictionary<string, GameObject> family) {
@@ -44,14 +111,20 @@ public class NodesManager : MonoBehaviour {
 
 		foreach (KeyValuePair<string, GameObject> entry in family) {
 			if (this.testTerms.ContainsKey (entry.Key)) {
-				Debug.Log (this.testTerms [entry.Key]);
-				this.LabelFamilyMembers (this.testTerms);
+				//Debug.Log (this.testTerms [entry.Key]);
+				this.LabelFamilyMembers(); // (this.testTerms);
 				//entry.Value.GetComponent <FamilyMember> ().SetLabel (this.testTerms [entry.Key]);
 			}
 		}
 	}
 
-	void LabelFamilyMembers (Dictionary <string, string> labels) {
+	void Update () {
+		if (Input.GetKeyDown(KeyCode.D)) {
+			this.LabelFamilyMembers();
+		}
+	}
+
+	void LabelFamilyMembers () { // (Dictionary <string, string> labels) {
 		// track used colors for same labels
 		this.assignedColors = new Dictionary<string, Color> ();
 
@@ -77,14 +150,20 @@ public class NodesManager : MonoBehaviour {
 		this.colors.Add (new Color (0.6f, 1.0f, 0.9f)); 	// light blue
 
 		FamilyMember currentMember;
+		string currentLanguage = "English";
 		string currentLabel;
 		Color newColor;
 
 		// label and color family members
 		foreach (KeyValuePair<string, GameObject> entry in this.family) {
-			Debug.Log (entry.Key);
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
-			currentLabel = labels [entry.Key];
+
+			//var currentTerm = labelsData["M"] as RootObject;
+			//currentLabel = currentTerm[currentLanguage];
+
+			//CompoundTerm currentTerm = typeof(RootObject).GetProperty("M").GetValue(labelsData, null) as CompoundTerm;
+
+			currentLabel = labelsData.M.English;
 			currentMember.SetLabel (currentLabel);
 			// give same colors to same terms
 			if (this.assignedColors.ContainsKey (currentLabel)) {

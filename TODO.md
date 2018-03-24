@@ -55,27 +55,25 @@
 	- [ ] populate labeled kin with exact terms from an example language
 	- [ ] display labels in presentation (below)
 
-## basic data
-- [ ] `system` relation associates system `id` with system `name` (like `"Sudanese"`)
-- [ ] `term` relation associates compound types (distance from ego) with terms
-	- [ ] seven sets of terms broadly representing seven different kinship terminology systems
-	- [ ] each term in `r'[A-Z]'`, where e.g. "Sudanese" requires more letters than "Hawaiian"
-		- [ ] start counting up from `"A"`
-		- [ ] unique terms within a system are assigned different term strings for different compound types
-		- [ ] shared terms within a system are assigned the same term strings for different compound types
-	- [ ] account for branching logic, e.g. Hawaiʻian-system sibling terms are sensitive to ego's gender
-- [ ] `label` relation associates terms with labels
-	- [ ] decide: use one relation per system or share one among all languages?
-	- [ ] `id` for the label
-	- [ ] `term` for each system term
-	- [ ] (`system_id` for a unique `system.id` if using a single relation here)
-	- [ ] `label` for surface translation in a language
-	- [ ] `language` for label of the language the term comes from
+## basic JSON data
+- [ ] serialize JSON object
+- [ ] combine terminology and label map
+	- [ ] id is a compound string, like `"FZ"`
+	- [ ] language name, like `"Tongan"`
+	- [ ] compound string, like `"FZ"`
+	- [ ] consider special strings for cross-sibling terms, like `"Z_m"` vs `"Z_f"`
+		- [ ] if implement this solution, parse these terms based on ego's property in branching program logic
+	- [ ] consider special strings for older vs younger terms, like `"Z_older"` vs `"Z_younger"`
+- [ ] associate languages with systems
+	- [ ] language name, like `"Arabic"`
+	- [ ] system name, like `"Sudanese"`
 
 ## testing
 - [ ] set up tests
 
 ## beyond
+
+### presentation and logic
 - [ ] calculate and visualize dynamic ties
 	- [ ] connections based on data in node edges
 	- [ ] place elbow, horiz, vert, spouse ties correctly
@@ -90,3 +88,21 @@
 	- [ ] output types data
 	- [ ] output current language name
 	- [ ] output labels data
+
+### data tables
+- [ ] `system` relation associates system `id` with system `name` (like `"Sudanese"`)
+- [ ] `term` relation associates compound types (distance from ego) with terms
+	- [ ] seven sets of terms broadly representing seven different kinship terminology systems
+	- [ ] each term in `r'[A-Z]'`, where e.g. "Sudanese" requires more letters than "Hawaiian"
+		- [ ] start counting up from `"A"`
+		- [ ] unique terms within a system are assigned different term strings for different compound types
+		- [ ] shared terms within a system are assigned the same term strings for different compound types
+	- [ ] account for branching logic, e.g. Hawaiʻian-system sibling terms are sensitive to ego's gender
+		- [ ] remove or revise the interim solution implemented with basic JSON deserialization above
+- [ ] `label` relation associates terms with labels
+	- [ ] decide: use one relation per system or share one among all languages?
+	- [ ] `id` for the label
+	- [ ] `term` for each system term
+	- [ ] (`system_id` for a unique `system.id` if using a single relation here)
+	- [ ] `label` for surface translation in a language
+	- [ ] `language` for label of the language the term comes from

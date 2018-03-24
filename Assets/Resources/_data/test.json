@@ -1,0 +1,66 @@
+{
+	"M": {
+		"English": "mother",
+		"Japanese": "母"
+	},
+	"F": {
+		"English": "father",
+		"Japanese": "父"
+	},
+	"Z": {
+		"English": "sister",
+		"Japanese": "妹、姉"
+	},
+	"B": {
+		"English": "brother",
+		"Japanese": "弟、兄"
+	},
+	"MB": {
+		"English": "uncle"
+	},
+	"MZ": {
+		"English": "aunt"
+	},
+	"FB": {
+		"English": "uncle"
+	},
+	"FZ": {
+		"English": "aunt"
+	},
+	"MF": {
+		"English": "grandfather"
+	},
+	"MM": {
+		"English": "grandmother"
+	},
+	"FF": {
+		"English": "grandfather"
+	},
+	"FM": {
+		"English": "grandmother"
+	},
+	"MBS": {
+		"English": "cousin"
+	},
+	"MBD": {
+		"English": "cousin"
+	},
+	"MZS": {
+		"English": "cousin"
+	},
+	"MZD": {
+		"English": "cousin"
+	},
+	"FBS": {
+		"English": "cousin"
+	},
+	"FBD": {
+		"English": "cousin"
+	},
+	"FZS": {
+		"English": "cousin"
+	},
+	"FZD": {
+		"English": "cousin"
+	}
+}
