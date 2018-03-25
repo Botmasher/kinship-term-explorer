@@ -6,12 +6,16 @@ public class FamilyMember : MonoBehaviour {
 
 	public string label = "";
 	public TextMesh displayText;
+	public string sexMarking; 		// "F" or "M" reference for sex-marked terms in systems that use them
+	public string ageMarking; 		// "OLDER" or "YOUNGER" reference for relative age-marked terms in systems that use them
 
 	bool reshape = false;
 	Color color;
 	bool recolor = false;
 	Animator anim;
 	Material primaryMaterial;
+
+	RaycastHit hit;
 
 	void Start () {
 		this.anim = this.GetComponent<Animator> ();
@@ -32,6 +36,25 @@ public class FamilyMember : MonoBehaviour {
 			} else {
 				this.recolor = false;
 			}
+		}
+
+		if (Input.GetButtonDown ("Fire1")) {
+			if (Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
+				if (hit.collider.gameObject.tag == "Node") {
+					Debug.Log (hit.collider.transform.gameObject.name);
+					hit.collider.gameObject.GetComponent <FamilyMember> ().ToggleSexMarking();
+				}
+			}
+		}
+	}
+
+	public void ToggleSexMarking () {
+		if (this.anim.GetBool ("changeShape")) {
+			this.sexMarking = "M";
+			this.anim.SetBool ("changeShape", false);
+		} else {
+			this.sexMarking = "F";
+			this.anim.SetBool ("changeShape", true);
 		}
 	}
 

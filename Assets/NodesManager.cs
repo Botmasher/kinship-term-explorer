@@ -71,9 +71,28 @@ public class NodesManager : MonoBehaviour {
 
 		// label and color family members
 		foreach (KeyValuePair<string, GameObject> entry in this.family) {
+
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
+
 			currentLabel = labelsData[entry.Key.ToUpper()][currentLanguage].Value;
+
+			if (currentLabel.Contains("_OLDER") || currentLabel.Contains("_YOUNGER")) {
+				if (currentMember.ageMarking != "") {
+					// check age marking and assign older or younger terms to the correct member
+				}
+			}
+
+			if (currentLabel.Contains("_F") || currentLabel.Contains("_M")) {
+				if (currentMember.sexMarking != "") {
+					// check sex marking and assign m or f terms to the correct member
+				}
+			}
+
+			// TODO handle cross-marked terms in Hawaiian type
+
+			// ELSE no age marking or sex marking
 			currentMember.SetLabel (currentLabel);
+
 			// give same colors to same terms
 			if (this.assignedColors.ContainsKey (currentLabel)) {
 				newColor = this.assignedColors [currentLabel];

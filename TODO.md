@@ -42,10 +42,12 @@
 	- [ ] the language-specific labels
 - [ ] change member node based on state
 	- [ ] FSM for handling state changes: node color
-	- [ ] FSM for handling state changes: node shape
+	- [X] FSM for handling state changes: node shape
 - [ ] relationship manager (or just all local to each node?)
 	- [ ] handle overview of node relationships
 	- [ ] handle changes impacting surrounding nodes
+		- [ ] starter: if ego updates shape, sex-marked terms update as needed
+		- [ ] if above, implement checking ego's state when populating data
 	- [ ] store and set node colors
 		- [ ] unique terms or labels have different colors
 		- [ ] same terms or labels share the same color
@@ -56,7 +58,7 @@
 	- [ ] display labels in presentation (below)
 
 ## basic JSON data
-- [ ] serialize JSON object
+- [X] serialize JSON object
 - [ ] combine terminology and label map
 	- [ ] id is a compound string, like `"FZ"`
 	- [ ] language name, like `"Tongan"`

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 95898794962893706}
   m_Layer: 0
   m_Name: family-member
-  m_TagString: Untagged
+  m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,3 +213,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: 
   displayText: {fileID: 102153606960951046}
+  sexMarking: 
+  ageMarking: 
