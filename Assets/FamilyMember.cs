@@ -16,10 +16,6 @@ public class FamilyMember : MonoBehaviour {
 	void Start () {
 		this.anim = this.GetComponent<Animator> ();
 		this.primaryMaterial = this.GetComponent<MeshRenderer> ().material;
-		// test initialize with a random color
-		//Color[] colors = new Color[]{ Color.red, Color.black, Color.blue, Color.cyan, Color.white, Color.green, Color.gray, Color.yellow, Color.magenta };
-		//color = colors[Random.Range(0, colors.Length)];
-		//this.GetComponent<MeshRenderer> ().material.color = color;
 	}
 
 	void Update() {
@@ -41,12 +37,24 @@ public class FamilyMember : MonoBehaviour {
 
 	public void SetColor (Color color) {
 		this.color = color;
-		this.recolor = true;
 	}
 
 	public void SetLabel (string label) {
 		this.label = label;
-		this.displayText.text = label;
+
+		// TODO color text based on background
+
+		StartCoroutine ("RandomizeRelabeling");
+
 		// TODO split and wrap display text at whitespace or char count limit
 	}
+
+	IEnumerator RandomizeRelabeling () {
+		this.displayText.text = "";
+		yield return new WaitForSeconds (Random.Range(5f, 50f) * Time.deltaTime);
+		this.displayText.text = this.label;
+		this.recolor = true;
+		yield return null;
+	}
+
 }
