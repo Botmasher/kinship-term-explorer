@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: 
+  labelLineLength: 9
   displayText: {fileID: 102153606960951046}
   sexMarking: 
   ageMarking: 

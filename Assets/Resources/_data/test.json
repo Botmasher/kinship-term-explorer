@@ -1,66 +1,82 @@
 {
 	"M": {
-		"English": "mother",
-		"Japanese": "母"
+		"Primary": "mother",
+		"English": "mother"
 	},
 	"F": {
-		"English": "father",
-		"Japanese": "父"
+		"Primary": "father",
+		"English": "father"
 	},
 	"Z": {
-		"English": "sister",
-		"Japanese": "妹、姉"
+		"Primary": "sister",
+		"English": "sister"
 	},
 	"B": {
-		"English": "brother",
-		"Japanese": "弟、兄"
+		"Primary": "brother",
+		"English": "brother"
 	},
 	"MB": {
+		"Primary": "mother's brother",
 		"English": "uncle"
 	},
 	"MZ": {
+		"Primary": "mother's sister",
 		"English": "aunt"
 	},
 	"FB": {
+		"Primary": "father's brother",
 		"English": "uncle"
 	},
 	"FZ": {
+		"Primary": "father's sister",
 		"English": "aunt"
 	},
 	"MF": {
+		"Primary": "mother's father",
 		"English": "grandfather"
 	},
 	"MM": {
+		"Primary": "mother's mother",
 		"English": "grandmother"
 	},
 	"FF": {
+		"Primary": "father's father",
 		"English": "grandfather"
 	},
 	"FM": {
+		"Primary": "father's mother",
 		"English": "grandmother"
 	},
 	"MBS": {
+		"Primary": "mother's brother's son",
 		"English": "cousin"
 	},
 	"MBD": {
+		"Primary": "mother's brother's daughter",
 		"English": "cousin"
 	},
 	"MZS": {
+		"Primary": "mother's sister's son",
 		"English": "cousin"
 	},
 	"MZD": {
+		"Primary": "mother's sister's daughter",
 		"English": "cousin"
 	},
 	"FBS": {
+		"Primary": "father's brother's son",
 		"English": "cousin"
 	},
 	"FBD": {
+		"Primary": "father's brother's daughter",
 		"English": "cousin"
 	},
 	"FZS": {
+		"Primary": "father's sister's son",
 		"English": "cousin"
 	},
 	"FZD": {
+		"Primary": "father's sister's daughter",
 		"English": "cousin"
 	}
 }

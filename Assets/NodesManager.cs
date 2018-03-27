@@ -27,6 +27,16 @@ public class NodesManager : MonoBehaviour {
 		labelsData = JSON.Parse(jsonFile.text);
 	}
 
+	// TEST CALLS to update labels - call from client instead
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.E)) {
+			this.LabelFamilyMembers ("English");
+		}
+		if (Input.GetKeyDown (KeyCode.P)) {
+			this.LabelFamilyMembers ();
+		}
+	}
+
 	public void SetFamily (Dictionary<string, GameObject> family) {
 		this.family = family;
 		// delay for JSON to finish parsing
@@ -39,12 +49,13 @@ public class NodesManager : MonoBehaviour {
 		yield return null; 
 	}
 
-	void LabelFamilyMembers () {
+	public void LabelFamilyMembers (string languageName="Primary") {
 		// track used colors for same labels
 		this.assignedColors = new Dictionary<string, Color> ();
 
 		// all possible colors
-		this.colors = new List<Color> () { Color.white };
+		this.colors = new List<Color> ();
+		this.colors.Add (Color.white);
 		this.colors.Add (new Color (1.0f, 0.6f, 0.0f)); 	// orange
 		this.colors.Add (new Color (1.0f, 0.2f, 0.2f)); 	// light red
 		this.colors.Add (Color.yellow);
@@ -63,9 +74,12 @@ public class NodesManager : MonoBehaviour {
 		this.colors.Add (new Color (0.7f, 0.4f, 0.3f)); 	// brown
 		this.colors.Add (new Color (1.0f, 0.7f, 1.0f)); 	// light pink
 		this.colors.Add (new Color (0.6f, 1.0f, 0.9f)); 	// light blue
+		this.colors.Add (new Color (0.0f, 1.0f, 0.2f)); 	// 
+		this.colors.Add (new Color (0.6f, 0.8f, 0.1f)); 	// 
+		this.colors.Add (new Color (0.5f, 0.3f, 0.9f)); 	// 
+		this.colors.Add (new Color (0.9f, 0.0f, 0.3f)); 	// 
 
 		FamilyMember currentMember;
-		string currentLanguage = "English";
 		string currentLabel;
 		Color newColor;
 
@@ -74,7 +88,7 @@ public class NodesManager : MonoBehaviour {
 
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
 
-			currentLabel = labelsData[entry.Key.ToUpper()][currentLanguage].Value;
+			currentLabel = labelsData[entry.Key.ToUpper()][languageName].Value;
 
 			if (currentLabel.Contains("_OLDER") || currentLabel.Contains("_YOUNGER")) {
 				if (currentMember.ageMarking != "") {
@@ -97,7 +111,7 @@ public class NodesManager : MonoBehaviour {
 			if (this.assignedColors.ContainsKey (currentLabel)) {
 				newColor = this.assignedColors [currentLabel];
 			} else {
-				newColor = this.colors [0];
+				newColor = this.colors[0];
 				this.colors.RemoveAt (0);
 				this.assignedColors.Add (currentLabel, newColor);
 			}
@@ -105,7 +119,7 @@ public class NodesManager : MonoBehaviour {
 		}
 	}
 
-	public void AddFamilyMember (string primaryCompoundName, GameObject member) {
+	void AddFamilyMember (string primaryCompoundName, GameObject member) {
 		this.family.Add (primaryCompoundName, member);
 	}
 

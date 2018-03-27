@@ -5,6 +5,7 @@ using UnityEngine;
 public class FamilyMember : MonoBehaviour {
 
 	public string label = "";
+	public int labelLineLength = 7;
 	public TextMesh displayText;
 	public string sexMarking; 		// "F" or "M" reference for sex-marked terms in systems that use them
 	public string ageMarking; 		// "OLDER" or "YOUNGER" reference for relative age-marked terms in systems that use them
@@ -14,7 +15,6 @@ public class FamilyMember : MonoBehaviour {
 	bool recolor = false;
 	Animator anim;
 	Material primaryMaterial;
-
 	RaycastHit hit;
 
 	void Start () {
@@ -75,7 +75,23 @@ public class FamilyMember : MonoBehaviour {
 	IEnumerator RandomizeRelabeling () {
 		this.displayText.text = "";
 		yield return new WaitForSeconds (Random.Range(5f, 50f) * Time.deltaTime);
-		this.displayText.text = this.label;
+		string[] labelWords = this.label.Split ();
+		string formattedLabel = "";
+		int currentLineLength = 0;
+		foreach (string word in labelWords) {
+			// add either space or newline before all but first word
+			if (formattedLabel != "") {
+				if ((currentLineLength + word.Length) > labelLineLength) {
+					formattedLabel += "\n";
+					currentLineLength = 0;
+				} else {
+					formattedLabel += " ";
+				}
+			}
+			formattedLabel += word;
+			currentLineLength += word.Length;
+		}
+		this.displayText.text = formattedLabel;
 		this.recolor = true;
 		yield return null;
 	}
