@@ -1,11 +1,13 @@
 # Task List
 
-## background
+## Background
 - [X] create project outline
 - [X] draft project README
 - [X] draft TODO list
 
-## basic presentation
+## Basics
+
+### presentation
 - [X] create static handmade family tree visuals
 	- [X] basic primitive nodes
 	- [X] basic primitive ties
@@ -31,38 +33,45 @@
 	- [ ] sketch draft image
 	- [ ] implement first draft start screen
 
-## basic logic
-- [ ] set state of each member node
-	- [ ] pass that data on node creation
-	- [ ] allow for resetting
-	- [ ] how does node handle position and value if reset? entire tree resets?
-- [ ] update member node text with current node data accounting for the three layers
-	- [ ] the primary strings
-	- [ ] the system-specific terms
-	- [ ] the language-specific labels
-- [ ] change member node based on state
-	- [ ] FSM for handling state changes: node color
-	- [X] FSM for handling state changes: node shape
-- [ ] relationship manager (or just all local to each node?)
-	- [ ] handle overview of node relationships
+### logic
+- [X] set state of each member node
+	- [X] pass that data on node creation
+	- [X] allow for resetting on user input
+	- [X] how does node handle position and value if reset? entire tree resets?
+		- [X] keep node in fixed position and constant compound primary value in this iteration
+- [X] update member node text with current node text depending on typology
+	- [X] just focus on the surface language-specific labels for this iteration
+- [X] change member node based on state
+	- [X] state update for handling changes to node color
+	- [X] FSM for handling state changes to node shape (rotation)
+- [ ] node relationship manager
+	- [X] store node relationships
+	- [X] handle calling nodes to set up and change state
 	- [ ] handle changes impacting surrounding nodes
 		- [ ] starter: if ego updates shape, sex-marked terms update as needed
 		- [ ] if above, implement checking ego's state when populating data
-	- [ ] store and set node colors
-		- [ ] unique terms or labels have different colors
-		- [ ] same terms or labels share the same color
-	- [ ] store and set node shapes
-		- [ ] typically used to represent gender (of member not term) on charts
-- [ ] data fetch and display
-	- [ ] populate labeled kin with exact terms from an example language
-	- [ ] display labels in presentation (below)
+	- [X] set node colors
+		- [X] unique terms or labels have different colors
+		- [X] same terms or labels share the same color
+		- [X] keep logic to update color within individual member behavior
+	- [X] set node shapes used to represent sex-marked terms on charts
+		- [X] use rotation for this iteration
+		- [X] keep function to toggle shape within individual member behavior 
+- [X] data fetch and display
+	- [X] populate labeled kin with exact terms from an example language
+	- [X] display labels in the presentation
+- [ ] get selected system from client
+	- [ ] user selects a terminology system from menu
+	- [ ] app sends selected language to node manager
+	- [ ] node manager uses data
 
-## basic JSON data
+### JSON data
 - [X] serialize JSON object
 - [ ] combine terminology and label map
 	- [ ] id is a compound string, like `"FZ"`
 	- [ ] language name, like `"Tongan"`
 	- [ ] compound string, like `"FZ"`
+	- [ ] perhaps a "language" for displaying compounds, like `"Primary": {..., "father's sister", ...}`
 	- [ ] consider special strings for cross-sibling terms, like `"Z_m"` vs `"Z_f"`
 		- [ ] if implement this solution, parse these terms based on ego's property in branching program logic
 	- [ ] consider special strings for older vs younger terms, like `"Z_older"` vs `"Z_younger"`
@@ -70,10 +79,10 @@
 	- [ ] language name, like `"Arabic"`
 	- [ ] system name, like `"Sudanese"`
 
-## testing
+## Testing
 - [ ] set up tests
 
-## beyond
+## Beyond
 
 ### presentation and logic
 - [ ] calculate and visualize dynamic ties
