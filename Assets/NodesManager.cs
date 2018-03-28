@@ -10,10 +10,7 @@ public class NodesManager : MonoBehaviour {
 	// world member node objects
 	Dictionary<string, GameObject> family;
 
-	// sample data
-	Dictionary<string, string> testTerms = new Dictionary<string, string> ();
-
-	// sample JSON serialization classes - used to test deserialization in Start()
+	// parsed JSON data mapping kin types to terms (labels in languages)
 	JSONNode labelsData;
 
 	// map for relating same terms to same colors
@@ -21,24 +18,15 @@ public class NodesManager : MonoBehaviour {
 	List<Color> colors;
 
 	void Start () {
-		// sample JSON deserialization
+		// parsing kin type-term labels
 		string path = Path.Combine("_data", "test");
 		TextAsset jsonFile = Resources.Load<TextAsset> (path); 	// 	./Assets/Resources/_data/test.json
 		labelsData = JSON.Parse(jsonFile.text);
 	}
 
-	// TEST CALLS to update labels - call from client instead
-	void Update() {
-		if (Input.GetKeyDown (KeyCode.E)) {
-			this.LabelFamilyMembers ("English");
-		}
-		if (Input.GetKeyDown (KeyCode.P)) {
-			this.LabelFamilyMembers ();
-		}
-	}
-
 	public void SetFamily (Dictionary<string, GameObject> family) {
 		this.family = family;
+		this.family ["ego"].GetComponent<FamilyMember> ().isEgo = true;
 		// delay for JSON to finish parsing
 		StartCoroutine ("DelayLabelFamilyWithData");
 	}
@@ -88,7 +76,7 @@ public class NodesManager : MonoBehaviour {
 
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
 
-			currentLabel = labelsData[entry.Key.ToUpper()][languageName].Value;
+			currentLabel = this.labelsData [entry.Key.ToUpper ()] [languageName].Value;
 
 			if (currentLabel.Contains("_OLDER") || currentLabel.Contains("_YOUNGER")) {
 				if (currentMember.ageMarking != "") {
@@ -105,9 +93,15 @@ public class NodesManager : MonoBehaviour {
 			// TODO handle cross-marked terms in Hawaiian type
 
 			// ELSE no age marking or sex marking
-			currentMember.SetLabel (currentLabel);
 
-			// give same colors to same terms
+			// give text to the family member
+			if (currentMember.isEgo) {
+				currentMember.LabelAsEgo ();
+			} else {
+				currentMember.SetLabel (currentLabel);
+			}
+
+			// give same colors to same-termed members
 			if (this.assignedColors.ContainsKey (currentLabel)) {
 				newColor = this.assignedColors [currentLabel];
 			} else {
@@ -116,6 +110,7 @@ public class NodesManager : MonoBehaviour {
 				this.assignedColors.Add (currentLabel, newColor);
 			}
 			currentMember.SetColor (newColor);
+
 		}
 	}
 

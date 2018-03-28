@@ -9,13 +9,20 @@ public class FamilyMember : MonoBehaviour {
 	public TextMesh displayText;
 	public string sexMarking; 		// "F" or "M" reference for sex-marked terms in systems that use them
 	public string ageMarking; 		// "OLDER" or "YOUNGER" reference for relative age-marked terms in systems that use them
+	public bool isEgo = false;
 
-	bool reshape = false;
 	Color color;
 	bool recolor = false;
 	Animator anim;
 	Material primaryMaterial;
 	RaycastHit hit;
+
+	// store text mesh child rotation to keep it from rotating
+	Quaternion fixedDisplayTextRotation;
+
+	void Awake () {
+		fixedDisplayTextRotation = this.displayText.transform.rotation;
+	}
 
 	void Start () {
 		this.anim = this.GetComponent<Animator> ();
@@ -23,13 +30,6 @@ public class FamilyMember : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyUp (KeyCode.A)) {
-			if (this.anim.GetBool ("changeShape")) {
-				this.anim.SetBool ("changeShape", false);
-			} else {
-				this.anim.SetBool ("changeShape", true);
-			}
-		}
 		if (this.recolor) {
 			if (this.primaryMaterial.color != this.color) {
 				this.primaryMaterial.color = Color.Lerp (this.primaryMaterial.color, this.color, Time.deltaTime);
@@ -38,17 +38,27 @@ public class FamilyMember : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown ("Fire1")) {
+		// change ego on click
+		if (this.isEgo && Input.GetButtonDown ("Fire1")) {
 			if (Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
-				if (hit.collider.gameObject.tag == "Node") {
-					Debug.Log (hit.collider.transform.gameObject.name);
-					hit.collider.gameObject.GetComponent <FamilyMember> ().ToggleSexMarking();
+				if (hit.collider.gameObject == this.gameObject) {
+					this.ToggleSexMarking();
 				}
 			}
 		}
 	}
 
+	// keep text mesh from rotating if parent does
+	void LateUpdate() {
+		this.displayText.transform.rotation = fixedDisplayTextRotation;
+	}
+
 	public void ToggleSexMarking () {
+		// give time for animator to load before changing shape
+		StartCoroutine ("WaitThenToggleSexMarking");
+	}
+	IEnumerator WaitThenToggleSexMarking () {
+		yield return new WaitForSeconds (0.1f);
 		if (this.anim.GetBool ("changeShape")) {
 			this.sexMarking = "M";
 			this.anim.SetBool ("changeShape", false);
@@ -56,6 +66,7 @@ public class FamilyMember : MonoBehaviour {
 			this.sexMarking = "F";
 			this.anim.SetBool ("changeShape", true);
 		}
+		yield return null;
 	}
 
 	public void SetColor (Color color) {
@@ -65,11 +76,16 @@ public class FamilyMember : MonoBehaviour {
 	public void SetLabel (string label) {
 		this.label = label;
 
-		// TODO color text based on background
+		// TODO color text based on member color
 
 		StartCoroutine ("RandomizeRelabeling");
+	}
 
-		// TODO split and wrap display text at whitespace or char count limit
+	public void LabelAsEgo (string egoName="(you)") {
+		this.label = egoName;
+		this.displayText.text = egoName;
+		this.displayText.color = Color.gray;
+		this.displayText.fontStyle = FontStyle.Italic;
 	}
 
 	IEnumerator RandomizeRelabeling () {

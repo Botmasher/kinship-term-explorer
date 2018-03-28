@@ -13,16 +13,16 @@
 	- [X] basic primitive ties
 	- [X] upgrade ties to reflect custom spacing and relationships
 - [ ] create better visuals
-	- [ ] better sprites for nodes
-		- [ ] different colors
-		- [ ] different shapes
 	- [ ] better sprites for ties
 	- [ ] background
-	- [ ] sprite animations for FSM transitions
-- [ ] place text over nodes
-	- [ ] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
-	- [ ] place text for seven types
-	- [ ] place text for any labels
+- [X] place text over nodes
+	- [X] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
+	- [X] place text for any kin term labels
+- [ ] break apart family member object
+	- [ ] parent empty for handling data display and presentation choice logic
+	- [ ] cube child object for coloring and rotation
+	- [ ] text mesh child object for displaying labels
+- [ ] create extra older and younger sibling objects
 - [ ] create UI menu
 	- [ ] display primary terms by default (compounds)
 	- [ ] select a system (types)
@@ -68,13 +68,15 @@
 ### JSON data
 - [X] serialize JSON object
 - [ ] combine terminology and label map
-	- [ ] id is a compound string, like `"FZ"`
-	- [ ] language name, like `"Tongan"`
-	- [ ] compound string, like `"FZ"`
-	- [ ] perhaps a "language" for displaying compounds, like `"Primary": {..., "father's sister", ...}`
-	- [ ] consider special strings for cross-sibling terms, like `"Z_m"` vs `"Z_f"`
-		- [ ] if implement this solution, parse these terms based on ego's property in branching program logic
-	- [ ] consider special strings for older vs younger terms, like `"Z_older"` vs `"Z_younger"`
+	- [X] id is a compound string, like `"FZ"`
+	- [X] language name, like `"Tongan"`
+	- [X] compound string, like `"FZ"`
+	- [X] perhaps a "language" for displaying compounds, like `"Primary": {..., "father's sister", ...}`
+	- [ ] fill out data from representative languages
+	- [ ] consider special strings for terms marked relative to state of ego
+		- [ ] f vs m terms, like `"Z_f"` (sister term if EGO is F)
+		- [ ] older vs younger terms, like `"Z_older"` vs `"Z_younger"`
+		- [ ] implement by comparing data, member nodes and ego node when labeling in node manager
 - [ ] associate languages with systems
 	- [ ] language name, like `"Arabic"`
 	- [ ] system name, like `"Sudanese"`
@@ -99,6 +101,10 @@
 	- [ ] output types data
 	- [ ] output current language name
 	- [ ] output labels data
+- [ ] create better visuals
+	- [ ] better sprites/shapes for nodes
+	- [ ] refine colors for nodes
+	- [ ] sprite animations for FSM transitions
 
 ### data tables
 - [ ] `system` relation associates system `id` with system `name` (like `"Sudanese"`)
