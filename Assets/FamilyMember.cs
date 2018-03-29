@@ -10,6 +10,7 @@ public class FamilyMember : MonoBehaviour {
 	public string sexMarking; 		// "F" or "M" reference for sex-marked terms in systems that use them
 	public string ageMarking; 		// "OLDER" or "YOUNGER" reference for relative age-marked terms in systems that use them
 	public bool isEgo = false;
+	bool markingEgo = false;
 
 	Color color;
 	bool recolor = false;
@@ -21,7 +22,7 @@ public class FamilyMember : MonoBehaviour {
 	Quaternion fixedDisplayTextRotation;
 
 	void Awake () {
-		fixedDisplayTextRotation = this.displayText.transform.rotation;
+		this.fixedDisplayTextRotation = this.displayText.transform.rotation;
 	}
 
 	void Start () {
@@ -46,14 +47,26 @@ public class FamilyMember : MonoBehaviour {
 				}
 			}
 		}
+
+		// change ego every so often
+		//if (this.isEgo && !this.markingEgo) {
+		//	StartCoroutine ("CycleEgoMarking");
+		//}
 	}
 
 	// keep text mesh from rotating if parent does
 	void LateUpdate() {
-		this.displayText.transform.rotation = fixedDisplayTextRotation;
+		this.displayText.transform.rotation = this.fixedDisplayTextRotation;
 	}
 
-	public void ToggleSexMarking () {
+	public void ToggleSexMarking (string initialSetting="") {
+		// member setting when first loaded
+		if (initialSetting != "" && this.sexMarking == "") {
+			this.sexMarking = initialSetting;
+			if (initialSetting == "M") {
+				return;
+			}
+		}
 		// give time for animator to load before changing shape
 		StartCoroutine ("WaitThenToggleSexMarking");
 	}
@@ -67,6 +80,13 @@ public class FamilyMember : MonoBehaviour {
 			this.anim.SetBool ("changeShape", true);
 		}
 		yield return null;
+	}
+
+	IEnumerator CycleEgoMarking () {
+		this.markingEgo = true;
+		this.ToggleSexMarking ();
+		yield return new WaitForSeconds (6f);
+		this.markingEgo = false;
 	}
 
 	public void SetColor (Color color) {

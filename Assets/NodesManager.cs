@@ -69,6 +69,7 @@ public class NodesManager : MonoBehaviour {
 
 		FamilyMember currentMember;
 		string currentLabel;
+		JSONNode currentData;
 		Color newColor;
 
 		// label and color family members
@@ -76,7 +77,15 @@ public class NodesManager : MonoBehaviour {
 
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
 
-			currentLabel = this.labelsData [entry.Key.ToUpper ()] [languageName].Value;
+			currentData = this.labelsData [entry.Key.ToUpper ()];
+
+			// set terms marked relative to ego
+			if (currentData ["M"] != null && currentData ["F"] != null && currentData ["M"][languageName] != null && currentData ["F"][languageName] != null) {
+				currentLabel = currentData[this.family["ego"].GetComponent<FamilyMember>().sexMarking][languageName].Value;
+			} else {
+				// set all other labels
+				currentLabel = currentData[languageName].Value;
+			}
 
 			if (currentLabel.Contains("_OLDER") || currentLabel.Contains("_YOUNGER")) {
 				if (currentMember.ageMarking != "") {
@@ -84,9 +93,9 @@ public class NodesManager : MonoBehaviour {
 				}
 			}
 
-			if (currentLabel.Contains("_F") || currentLabel.Contains("_M")) {
-				if (currentMember.sexMarking != "") {
-					// check sex marking and assign m or f terms to the correct member
+			if (currentLabel.EndsWith("_F") || currentLabel.EndsWith("_M") || currentLabel.EndsWith("_m") || currentLabel.EndsWith("_f")) {
+				if (this.family ["ego"].GetComponent<FamilyMember> ().isEgo && this.family ["ego"].GetComponent<FamilyMember> ().sexMarking == "M") {
+					
 				}
 			}
 

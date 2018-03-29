@@ -9,11 +9,23 @@
 	},
 	"Z": {
 		"Primary": "sister",
-		"English": "sister"
+		"English": "sister",
+		"M": {
+			"Primary": "cross sibling"
+		},
+		"F": {
+			"Primary": "same sibling"
+		}
 	},
 	"B": {
 		"Primary": "brother",
-		"English": "brother"
+		"English": "brother",
+		"M": {
+			"Primary": "same sibling"
+		},
+		"F": {
+			"Primary": "cross sibling"
+		}
 	},
 	"MB": {
 		"Primary": "mother's brother",
