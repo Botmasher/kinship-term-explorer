@@ -17,6 +17,9 @@ public class NodesManager : MonoBehaviour {
 	Dictionary<string, Color> assignedColors;
 	List<Color> colors;
 
+	// language name found in source data
+	string language = "";
+
 	void Start () {
 		// parsing kin type-term labels
 		string path = Path.Combine("_data", "test");
@@ -27,7 +30,9 @@ public class NodesManager : MonoBehaviour {
 	public void SetFamily (Dictionary<string, GameObject> family) {
 		this.family = family;
 		this.family ["ego"].GetComponent<FamilyMember> ().isEgo = true;
-		// delay for JSON to finish parsing
+		// sub and listen for changes in ego marking
+		this.family ["ego"].GetComponent<FamilyMember> ().OnSexMarking += NodeChangeHandler;
+		// delay labeling so JSON can finish parsing first
 		StartCoroutine ("DelayLabelFamilyWithData");
 	}
 
@@ -37,7 +42,15 @@ public class NodesManager : MonoBehaviour {
 		yield return null; 
 	}
 
+	// handle relabeling based on node state (principally ego) changes
+	private void NodeChangeHandler () {
+		this.LabelFamilyMembers (this.language);
+	}
+
 	public void LabelFamilyMembers (string languageName="Primary") {
+		// set the node language
+		this.language = languageName;
+
 		// track used colors for same labels
 		this.assignedColors = new Dictionary<string, Color> ();
 
@@ -79,31 +92,22 @@ public class NodesManager : MonoBehaviour {
 
 			currentData = this.labelsData [entry.Key.ToUpper ()];
 
-			// set terms marked relative to ego
-			if (currentData ["M"] != null && currentData ["F"] != null && currentData ["M"][languageName] != null && currentData ["F"][languageName] != null) {
-				currentLabel = currentData[this.family["ego"].GetComponent<FamilyMember>().sexMarking][languageName].Value;
+			// set terms marked relative to ego if they exist in this language
+			// principally to correctly display cross-marked terms in Hawaiian type
+			if (currentData ["M"] != null && currentData ["F"] != null && currentData ["M"][this.language] != null && currentData ["F"][this.language] != null) {
+				currentLabel = currentData[this.family["ego"].GetComponent<FamilyMember>().SexMarking][this.language].Value;
 			} else {
 				// set all other labels
-				currentLabel = currentData[languageName].Value;
+				currentLabel = currentData[this.language].Value;
 			}
-
+				
 			if (currentLabel.Contains("_OLDER") || currentLabel.Contains("_YOUNGER")) {
 				if (currentMember.ageMarking != "") {
 					// check age marking and assign older or younger terms to the correct member
 				}
 			}
 
-			if (currentLabel.EndsWith("_F") || currentLabel.EndsWith("_M") || currentLabel.EndsWith("_m") || currentLabel.EndsWith("_f")) {
-				if (this.family ["ego"].GetComponent<FamilyMember> ().isEgo && this.family ["ego"].GetComponent<FamilyMember> ().sexMarking == "M") {
-					
-				}
-			}
-
-			// TODO handle cross-marked terms in Hawaiian type
-
-			// ELSE no age marking or sex marking
-
-			// give text to the family member
+			// give text to family member
 			if (currentMember.isEgo) {
 				currentMember.LabelAsEgo ();
 			} else {

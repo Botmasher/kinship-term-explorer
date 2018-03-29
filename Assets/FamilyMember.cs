@@ -7,10 +7,25 @@ public class FamilyMember : MonoBehaviour {
 	public string label = "";
 	public int labelLineLength = 7;
 	public TextMesh displayText;
-	public string sexMarking; 		// "F" or "M" reference for sex-marked terms in systems that use them
 	public string ageMarking; 		// "OLDER" or "YOUNGER" reference for relative age-marked terms in systems that use them
 	public bool isEgo = false;
 	bool markingEgo = false;
+
+	// "F" or "M" reference for sex-marked terms in systems that use them
+	string _SexMarking = "";
+	public string SexMarking {
+		get { return this._SexMarking; }
+		set {
+			this._SexMarking = value;
+			// call any subscriber methods listening for change on ego
+			if (OnSexMarking != null && this.isEgo) {
+				OnSexMarking ();
+			}
+		}
+	}
+	// allow listening to change in marking
+	public delegate void OnSexMarkingDelegate ();
+	public event OnSexMarkingDelegate OnSexMarking;
 
 	Color color;
 	bool recolor = false;
@@ -61,8 +76,8 @@ public class FamilyMember : MonoBehaviour {
 
 	public void ToggleSexMarking (string initialSetting="") {
 		// member setting when first loaded
-		if (initialSetting != "" && this.sexMarking == "") {
-			this.sexMarking = initialSetting;
+		if (initialSetting != "" && this.SexMarking == "") {
+			this.SexMarking = initialSetting;
 			if (initialSetting == "M") {
 				return;
 			}
@@ -73,10 +88,10 @@ public class FamilyMember : MonoBehaviour {
 	IEnumerator WaitThenToggleSexMarking () {
 		yield return new WaitForSeconds (0.1f);
 		if (this.anim.GetBool ("changeShape")) {
-			this.sexMarking = "M";
+			this.SexMarking = "M";
 			this.anim.SetBool ("changeShape", false);
 		} else {
-			this.sexMarking = "F";
+			this.SexMarking = "F";
 			this.anim.SetBool ("changeShape", true);
 		}
 		yield return null;

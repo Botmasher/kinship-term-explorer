@@ -22,7 +22,6 @@
 	- [ ] parent empty for handling data display and presentation choice logic
 	- [ ] cube child object for coloring and rotation
 	- [ ] text mesh child object for displaying labels
-- [ ] create extra older and younger sibling objects
 - [ ] create UI menu
 	- [ ] display primary terms by default (compounds)
 	- [ ] select a system (types)
@@ -44,12 +43,13 @@
 - [X] change member node based on state
 	- [X] state update for handling changes to node color
 	- [X] FSM for handling state changes to node shape (rotation)
-- [ ] node relationship manager
+- [X] node relationship manager
 	- [X] store node relationships
 	- [X] handle calling nodes to set up and change state
-	- [ ] handle changes impacting surrounding nodes
-		- [ ] starter: if ego updates shape, sex-marked terms update as needed
-		- [ ] if above, implement checking ego's state when populating data
+	- [X] handle ego marking impacting term choices for other nodes
+		- [X] implement checking data for marked terms
+		- [X] implement checking ego's state when populating data
+		- [X] if ego updates shape, sex-marked terms update as needed
 	- [X] set node colors
 		- [X] unique terms or labels have different colors
 		- [X] same terms or labels share the same color
@@ -62,8 +62,9 @@
 	- [X] display labels in the presentation
 - [ ] get selected system from client
 	- [ ] user selects a terminology system from menu
-	- [ ] app sends selected language to node manager
-	- [ ] node manager uses data
+	- [X] app sends selected language to node manager
+	- [X] node manager uses data
+	- [ ] verify that data exists for the language
 
 ### JSON data
 - [X] serialize JSON object
@@ -73,10 +74,9 @@
 	- [X] compound string, like `"FZ"`
 	- [X] perhaps a "language" for displaying compounds, like `"Primary": {..., "father's sister", ...}`
 	- [ ] fill out data from representative languages
-	- [ ] consider special strings for terms marked relative to state of ego
-		- [ ] f vs m terms, like `"Z_f"` (sister term if EGO is F)
-		- [ ] older vs younger terms, like `"Z_older"` vs `"Z_younger"`
-		- [ ] implement by comparing data, member nodes and ego node when labeling in node manager
+	- [ ] arrange data to handle terms marked relative to state of ego
+		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
+		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
 - [ ] associate languages with systems
 	- [ ] language name, like `"Arabic"`
 	- [ ] system name, like `"Sudanese"`
@@ -87,6 +87,11 @@
 ## Beyond
 
 ### presentation and logic
+- [ ] allow switching between toggling vs cycling ego marking
+	- [ ] family member behavior logic
+	- [ ] interface for user to hit switch
+- [ ] create +1 generation spouse objects
+- [ ] create extra older and younger sibling objects (tied to improving data and logic to handle age)
 - [ ] calculate and visualize dynamic ties
 	- [ ] connections based on data in node edges
 	- [ ] place elbow, horiz, vert, spouse ties correctly
@@ -106,20 +111,23 @@
 	- [ ] refine colors for nodes
 	- [ ] sprite animations for FSM transitions
 
-### data tables
-- [ ] `system` relation associates system `id` with system `name` (like `"Sudanese"`)
-- [ ] `term` relation associates compound types (distance from ego) with terms
-	- [ ] seven sets of terms broadly representing seven different kinship terminology systems
-	- [ ] each term in `r'[A-Z]'`, where e.g. "Sudanese" requires more letters than "Hawaiian"
-		- [ ] start counting up from `"A"`
-		- [ ] unique terms within a system are assigned different term strings for different compound types
-		- [ ] shared terms within a system are assigned the same term strings for different compound types
-	- [ ] account for branching logic, e.g. Hawaiʻian-system sibling terms are sensitive to ego's gender
-		- [ ] remove or revise the interim solution implemented with basic JSON deserialization above
-- [ ] `label` relation associates terms with labels
-	- [ ] decide: use one relation per system or share one among all languages?
-	- [ ] `id` for the label
-	- [ ] `term` for each system term
-	- [ ] (`system_id` for a unique `system.id` if using a single relation here)
-	- [ ] `label` for surface translation in a language
-	- [ ] `language` for label of the language the term comes from
+### data
+- [ ] improve current JSON models
+	- [ ] older vs younger terms in a way akin to current marking
+- [ ] upgrade database
+	- [ ] `system` relation associates system `id` with system `name` (like `"Sudanese"`)
+	- [ ] `term` relation associates compound types (distance from ego) with terms
+		- [ ] sets of terms broadly representing different kinship terminology systems
+		- [ ] each term in `r'[A-Z]'`, where e.g. "Sudanese" requires more letters than "Hawaiian"
+			- [ ] start counting up from `"A"`
+			- [ ] unique terms within a system are assigned different term strings for different compound types
+			- [ ] shared terms within a system are assigned the same term strings for different compound types
+		- [ ] account for branching logic, e.g. Hawaiʻian-system sibling terms are sensitive to ego's marking
+			- [ ] remove or revise the interim solution implemented with basic JSON deserialization above
+	- [ ] `label` relation associates terms with labels
+		- [ ] decide: use one relation per system or share one among all languages?
+		- [ ] `id` for the label
+		- [ ] `term` for each system term
+		- [ ] (`system_id` for a unique `system.id` if using a single relation here)
+		- [ ] `label` for surface translation in a language
+		- [ ] `language` for label of the language the term comes from
