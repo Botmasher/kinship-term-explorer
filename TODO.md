@@ -14,14 +14,14 @@
 	- [X] upgrade ties to reflect custom spacing and relationships
 - [ ] create better visuals
 	- [ ] better sprites for ties
-	- [ ] background
+	- [X] background
 - [X] place text over nodes
 	- [X] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
 	- [X] place text for any kin term labels
-- [ ] break apart family member object
-	- [ ] parent empty for handling data display and presentation choice logic
-	- [ ] cube child object for coloring and rotation
-	- [ ] text mesh child object for displaying labels
+- [X] break apart family member object
+	- [X] parent empty for handling data display and presentation choice logic
+	- [X] cube child object for coloring and rotation
+	- [X] text mesh child object for displaying labels
 - [ ] create UI menu
 	- [ ] display primary terms by default (compounds)
 	- [ ] select a system (types)
@@ -74,12 +74,9 @@
 	- [X] compound string, like `"FZ"`
 	- [X] perhaps a "language" for displaying compounds, like `"Primary": {..., "father's sister", ...}`
 	- [ ] fill out data from representative languages
-	- [ ] arrange data to handle terms marked relative to state of ego
+	- [X] arrange data to handle terms marked relative to state of ego
 		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
 		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
-- [ ] associate languages with systems
-	- [ ] language name, like `"Arabic"`
-	- [ ] system name, like `"Sudanese"`
 
 ## Testing
 - [ ] set up tests
@@ -114,6 +111,9 @@
 ### data
 - [ ] improve current JSON models
 	- [ ] older vs younger terms in a way akin to current marking
+	- [ ] associate languages with systems
+		- [ ] language name, like `"Arabic"`
+		- [ ] system name, like `"Sudanese"`
 - [ ] upgrade database
 	- [ ] `system` relation associates system `id` with system `name` (like `"Sudanese"`)
 	- [ ] `term` relation associates compound types (distance from ego) with terms

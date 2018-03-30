@@ -64,7 +64,7 @@ public class FamilyMember : MonoBehaviour {
 		// change ego on click
 		if (this.isEgo && Input.GetButtonDown ("Fire1")) {
 			if (Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
-				if (hit.collider.gameObject == this.gameObject) {
+				if (hit.collider.gameObject == this.displayShape.gameObject) {
 					this.ToggleSexMarking();
 				}
 			}

@@ -110,13 +110,6 @@ public class NodesManager : MonoBehaviour {
 				}
 			}
 
-			// give text to family member
-			if (currentMember.isEgo) {
-				currentMember.LabelAsEgo ();
-			} else {
-				currentMember.SetLabel (currentLabel);
-			}
-
 			// give same colors to same-termed members
 			if (this.assignedColors.ContainsKey (currentLabel)) {
 				newColor = this.assignedColors [currentLabel];
@@ -126,6 +119,13 @@ public class NodesManager : MonoBehaviour {
 				this.assignedColors.Add (currentLabel, newColor);
 			}
 			currentMember.SetColor (newColor);
+
+			// give text to family member
+			if (currentMember.isEgo) {
+				currentMember.LabelAsEgo ();
+			} else {
+				currentMember.SetLabel (currentLabel);
+			}
 
 		}
 	}
