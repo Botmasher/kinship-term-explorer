@@ -10,6 +10,11 @@ Desktop.ini
 /*.patch
 /*.diff
 
+*.log*
+
+# REACT
+/node_modules
+
 # UNITY
 
 [Ll]ibrary/
