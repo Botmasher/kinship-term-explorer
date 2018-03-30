@@ -36,6 +36,7 @@ public class NodesManager : MonoBehaviour {
 		StartCoroutine ("DelayLabelFamilyWithData");
 	}
 
+	// initially wait for loaded data and all instantiated members
 	IEnumerator DelayLabelFamilyWithData () {
 		yield return new WaitForSeconds(0.5f);
 		this.LabelFamilyMembers();
@@ -80,6 +81,7 @@ public class NodesManager : MonoBehaviour {
 		this.colors.Add (new Color (0.5f, 0.3f, 0.9f)); 	// 
 		this.colors.Add (new Color (0.9f, 0.0f, 0.3f)); 	// 
 
+		// storage for labeling and coloring members
 		FamilyMember currentMember;
 		string currentLabel;
 		JSONNode currentData;
@@ -100,9 +102,10 @@ public class NodesManager : MonoBehaviour {
 				// set all other labels
 				currentLabel = currentData[this.language].Value;
 			}
-				
+
+			// TODO handle older vs younger same-generation marking
 			if (currentLabel.Contains("_OLDER") || currentLabel.Contains("_YOUNGER")) {
-				if (currentMember.ageMarking != "") {
+				if (currentMember.AgeMarking != "") {
 					// check age marking and assign older or younger terms to the correct member
 				}
 			}

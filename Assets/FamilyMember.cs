@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class FamilyMember : MonoBehaviour {
 
+	public TextMesh displayText; 	// mesh for label text
+	public Transform displayShape; 	// mesh for animating color and shape
 	public string label = "";
 	public int labelLineLength = 7;
-	public TextMesh displayText;
-	public string ageMarking; 		// "OLDER" or "YOUNGER" reference for relative age-marked terms in systems that use them
 	public bool isEgo = false;
 	bool markingEgo = false;
+
+	// TODO "older" or "younger" reference for relative age-marked terms in systems that use them
+	string _AgeMarking;
+	public string AgeMarking {
+		get { return this._AgeMarking; }
+		set { this._AgeMarking = value; }
+	}
 
 	// "F" or "M" reference for sex-marked terms in systems that use them
 	string _SexMarking = "";
@@ -41,8 +48,8 @@ public class FamilyMember : MonoBehaviour {
 	}
 
 	void Start () {
-		this.anim = this.GetComponent<Animator> ();
-		this.primaryMaterial = this.GetComponent<MeshRenderer> ().material;
+		this.anim = displayShape.GetComponent<Animator> ();
+		this.primaryMaterial = displayShape.GetComponent<MeshRenderer> ().material;
 	}
 
 	void Update() {
