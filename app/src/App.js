@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
+import { GameMenu } from './GameMenu';
+import { GameContainer } from './GameContainer';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.gameInstance = window.gameInstance;
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentSystem: ['Primary'],
+			currentLanguage: ['Primary'],
+			systems: {
+				'Primary': ['Primary'],
+				'Inuit': ['English', 'Iñupiaq']
+			}
+		};
+	}
 
-  handleChangeLabels (e) {
-    e.preventDefault();
-    this.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', e.target.dataset.value);
-  }
+	handleUpdateTreeLabels = (systemName, languageName) => {
+		window.gameInstance && window.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', languageName);
+		this.setState({currentSystem: systemName, currentLanguage: languageName});
+	};
 
-  render() {
-    console.log(this.gameInstance);
-    return (
-      <div className = "App">
-        <div className="webgl-content" style={{marginTop: 150}}>
-         <a data-value="Primary" onClick={e => this.handleChangeLabels(e)}>Primary terms</a>
-          <a data-value="English" onClick={e => this.handleChangeLabels(e)}>English terms</a>
-          <div id="gameContainer" style={{width: 960, height: 600}}></div>
-          <div className="footer">
-            <div className="webgl-logo"></div>
-            <div className="fullscreen" onClick={() => this.gameInstance.SetFullscreen(1)}></div>
-            <div className="title">Kinship Term Explorer</div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+	setFullscreen = () => this.gameInstance.SetFullscreen(1);
+
+	render() {
+		const { systems, currentLanguage, currentSystem } = this.state;
+		return (
+			<div className = "App">
+				<h1>Kinship Term Explorer</h1>
+				<GameMenu handleUpdateTreeLabels={this.handleUpdateTreeLabels} systems={systems} system={currentSystem} language={currentLanguage} />
+				<GameContainer title={"Kinship Term Explorer"} setFullscreen={this.setFullscreen} />
+			</div>
+		);
+	}
 }
 
 export default App;
