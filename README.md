@@ -20,4 +20,6 @@ I originally included "Dravidian" in the list of systems. So far the cross-cousi
 
 ## Source Code and Framework
 
-Unlike many of my other leadup projects with their minimal interfaces, this leadup calls for a visual approach where info is geometrically positioned and selectable on screen. I've decided to start developing a scratch app using C# and Unity version `2017.2.0`.
+Unlike many of my other leadup projects with their minimal interfaces, this leadup calls for a visual approach where info is geometrically positioned and selectable on screen. I've decided to start developing a scratch app using C# and Unity version `2017.2.0`. The kinship labels are stored per language in a JSON object within `/Assets/Resources/_data`. The game builds a static tree of family members, parses the JSON data, colors and labels family member objects based on data, and updates the members based on user interactions.
+
+The frontend is built in React and located in `/app` and includes the main page, the Unity player and components for selecting kinship systems and example languages. The Unity build is compiled and saved under `/app/public/unity` and loaded at the head of the public `index.html`. React accesses the game session and messages its C# functions through `window.gameInstance` to pass data indicating the current language.
