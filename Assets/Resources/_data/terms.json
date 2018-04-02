@@ -1,0 +1,120 @@
+{
+	"Primary": {
+		"M": "mother",
+		"F": "father",
+		"Z": "sister",
+		"B": "brother",
+		"MB": "mother's brother",
+		"MZ": "mother's sister",
+		"FB": "father's brother",
+		"FZ": "father's sister",
+		"FF": "father's father",
+		"FM": "father's mother",
+		"MF": "mother's father",
+		"MM": "mother's mother",
+		"MBS": "mother's brother's son",
+		"MBD": "mother's brother's daughter",
+		"MZS": "mother's sister's son",
+		"MZD": "mother's sister's daughter",
+		"FBS": "father's brother's son",
+		"FBD": "father's brother's daughter",
+		"FZS": "father's sister's son",
+		"FZD": "father's sister's daughter"
+	},
+	"English": {
+		"M": "mother",
+		"F": "father",
+		"Z": "sister",
+		"B": "brother",
+		"MB": "uncle",
+		"MZ": "aunt",
+		"FB": "uncle",
+		"FZ": "aunt",
+		"FF": "grandfather",
+		"FM": "grandmother",
+		"MF": "grandfather",
+		"MM": "grandmother",
+		"MBS": "cousin",
+		"MBD": "cousin",
+		"MZS": "cousin",
+		"MZD": "cousin",
+		"FBS": "cousin",
+		"FBD": "cousin",
+		"FZS": "cousin",
+		"FZD": "cousin"
+	},
+	"Latin": {
+		"M": "mater",
+		"F": "pater",
+		"Z": "soror",
+		"B": "frater",
+		"MB": "avunculus",
+		"MZ": "matertera",
+		"FB": "patruus",
+		"FZ": "amita",
+		"FF": "avus",
+		"FM": "ava",
+		"MF": "avus",
+		"MM": "ava",
+		"MBS": "consobrinus",
+		"MBD": "consobrina",
+		"MZS": "matruelis",
+		"MZD": "matruelis",
+		"FBS": "patruelis",
+		"FBD": "patruelis",
+		"FZS": "amitinus",
+		"FZD": "amitina"
+	},
+	"Hawaiian": {
+		"M": "makuahine",
+		"F": "makuakāne",
+		"Z": {
+			"M": "kaikuahine",
+			"F": "kaikuaʻana"
+		},
+		"B": {
+			"M": "kaikuaʻana",
+			"F": "kaikuāne"
+		},
+		"MB": "makuakāne",
+		"MZ": "makuahine",
+		"FB": "makuakāne",
+		"FZ": "makuahine",
+		"FF": "kupuna",
+		"FM": "kupuna",
+		"MF": "kupuna",
+		"MM": "kupuna",
+		"MBS": {
+			"M": "kaikuaʻana",
+			"F": "kaikuāne"
+		},
+		"MBD": {
+			"M": "kaikuahine",
+			"F": "kaikuaʻana"
+		},
+		"MZS": {
+			"M": "kaikuaʻana",
+			"F": "kaikuāne"
+		},
+		"MZD": {
+			"M": "kaikuahine",
+			"F": "kaikuaʻana"
+		},
+		"FBS": {
+			"M": "kaikuaʻana",
+			"F": "kaikuāne"
+		},
+		"FBD": {
+			"M": "kaikuahine",
+			"F": "kaikuaʻana"
+		},
+		"FZS": {
+			"M": "kaikuaʻana",
+			"F": "kaikuāne"
+		},
+		"FZD": {
+			"M": "kaikuahine",
+			"F": "kaikuaʻana"
+		}
+	}
+}

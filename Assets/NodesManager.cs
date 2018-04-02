@@ -22,9 +22,9 @@ public class NodesManager : MonoBehaviour {
 
 	void Start () {
 		// parsing kin type-term labels
-		string path = Path.Combine("_data", "test");
-		TextAsset jsonFile = Resources.Load<TextAsset> (path); 	// 	./Assets/Resources/_data/test.json
-		labelsData = JSON.Parse(jsonFile.text);
+		string path = Path.Combine("_data", "terms");
+		TextAsset jsonFile = Resources.Load<TextAsset> (path); 	// ./Assets/Resources/_data/terms.json
+		this.labelsData = JSON.Parse(jsonFile.text);
 	}
 
 	public void SetFamily (Dictionary<string, GameObject> family) {
@@ -48,7 +48,7 @@ public class NodesManager : MonoBehaviour {
 		this.LabelFamilyMembers (this.language);
 	}
 
-	public void LabelFamilyMembers (string languageName="Latin") {
+	public void LabelFamilyMembers (string languageName="Primary") {
 		// set the node language
 		this.language = languageName;
 
@@ -92,15 +92,15 @@ public class NodesManager : MonoBehaviour {
 
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
 
-			currentData = this.labelsData [entry.Key.ToUpper ()];
+			currentData = this.labelsData [this.language][entry.Key.ToUpper ()];
 
 			// set terms marked relative to ego if they exist in this language
 			// principally to correctly display cross-marked terms in Hawaiian type
-			if (currentData ["M"] != null && currentData ["F"] != null && currentData ["M"][this.language] != null && currentData ["F"][this.language] != null) {
-				currentLabel = currentData[this.family["ego"].GetComponent<FamilyMember>().SexMarking][this.language].Value;
+			if (currentData ["M"] != null && currentData ["F"] != null) {
+				currentLabel = currentData[this.family["ego"].GetComponent<FamilyMember>().SexMarking].Value;
 			} else {
 				// set all other labels
-				currentLabel = currentData[this.language].Value;
+				currentLabel = currentData.Value;
 			}
 
 			// TODO handle older vs younger same-generation marking
