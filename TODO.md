@@ -62,7 +62,7 @@
 	- [X] populate labeled kin with exact terms from an example language
 	- [X] display labels in the presentation
 - [ ] get selected system from client
-	- [ ] user selects a terminology system from menu
+	- [X] user selects a terminology system from menu
 	- [X] app sends selected language to node manager
 	- [X] node manager uses data
 	- [ ] verify that data exists for the language
@@ -78,6 +78,13 @@
 	- [X] arrange data to handle terms marked relative to state of ego
 		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
 		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
+- [ ] cite sources
+	- [ ] https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/termsys.html
+	- [ ] Wiktionary
+	- [ ] wehewehe.org
+	- [ ] _Lengua y cultura Yanomami_ for proposed grandparent terms
+	- [ ] http://www.twi.bb/ for proposed grandparent terms
+	- [ ] explain: many cultural complications behind the simple terms used here, e.g. for [Igbo](https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/igbo_terms.html)
 
 ## Testing
 - [ ] set up tests
@@ -112,6 +119,8 @@
 ### data
 - [ ] ability to add notes to display next to data
 	- [ ] example: Hawaiʻian terms given are basic but often "wahine" or "kāne" is tacked on
+	- [ ] example: Hawaiʻian terms also distinguish sibling age
+	- [ ] example: Akan sees Crow pattern upon father's passing
 - [ ] improve current JSON models
 	- [ ] older vs younger terms in a way akin to current marking
 	- [ ] associate languages with systems
