@@ -48,7 +48,7 @@ public class NodesManager : MonoBehaviour {
 		this.LabelFamilyMembers (this.language);
 	}
 
-	public void LabelFamilyMembers (string languageName="Primary") {
+	public void LabelFamilyMembers (string languageName="Latin") {
 		// set the node language
 		this.language = languageName;
 

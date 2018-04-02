@@ -15,6 +15,7 @@
 - [ ] create better visuals
 	- [ ] better sprites for ties
 	- [X] background
+	- [ ] label repopulate so at least Hawaiian type is not so jarring when switching "you"
 - [X] place text over nodes
 	- [X] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
 	- [X] place text for any kin term labels
@@ -109,6 +110,8 @@
 	- [ ] sprite animations for FSM transitions
 
 ### data
+- [ ] ability to add notes to display next to data
+	- [ ] example: Hawaiʻian terms given are basic but often "wahine" or "kāne" is tacked on
 - [ ] improve current JSON models
 	- [ ] older vs younger terms in a way akin to current marking
 	- [ ] associate languages with systems

@@ -40,7 +40,7 @@ public class TreeSetup : MonoBehaviour {
 		GameObject.Instantiate (tieSpouse, new Vector2(family ["ego"].transform.position.x, family["ego"].transform.position.y + spacingY), tieSpouse.transform.rotation);
 
 		// tie ego's aunts and uncles
-		GameObject.Instantiate (tieWide3, new Vector2(family ["mb"].transform.position.x, family["mb"].transform.position.y + spacingY * 0.5f), tieWide3.transform.rotation);
+		GameObject.Instantiate (tieWide3, new Vector2(family ["mz"].transform.position.x, family["mz"].transform.position.y + spacingY * 0.5f), tieWide3.transform.rotation);
 		GameObject fbTie = GameObject.Instantiate (tieWide3, new Vector2(family ["fb"].transform.position.x, family["fb"].transform.position.y + spacingY * 0.5f), tieWide3.transform.rotation) as GameObject;
 		fbTie.GetComponent<SpriteRenderer> ().flipX = true;
 
@@ -102,10 +102,10 @@ public class TreeSetup : MonoBehaviour {
 		fz.GetComponent<FamilyMember> ().ToggleSexMarking ("F");
 
 		// ego's mother's siblings
-		Vector2 mbPos = new Vector2(m.transform.position.x - (spacingX * 2f), m.transform.position.y);
+		Vector2 mbPos = new Vector2(m.transform.position.x - (spacingX * 4f), m.transform.position.y);
 		GameObject mb = GameObject.Instantiate (member, mbPos, Quaternion.identity) as GameObject;
 		mb.GetComponent<FamilyMember> ().ToggleSexMarking ("M");
-		Vector2 mzPos = new Vector2(m.transform.position.x - (spacingX * 4f), m.transform.position.y);
+		Vector2 mzPos = new Vector2(m.transform.position.x - (spacingX * 2f), m.transform.position.y);
 		GameObject mz = GameObject.Instantiate (member, mzPos, Quaternion.identity) as GameObject;
 		mz.GetComponent<FamilyMember> ().ToggleSexMarking ("F");
 
