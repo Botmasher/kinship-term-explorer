@@ -3,3 +3,44 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.app-title {
+	font-family: 'Over the Rainbow', cursive;
+}
+
+/* make space for UI above Unity player */
+.webgl-content {
+	margin-top: 380px;
+}
+
+/* Unity player (absolutely positioned in webgl-style.css) */
+#gameContainer {
+	width: 960px;
+	height: 600px;
+}
+
+.webgl-content .footer {
+	margin-bottom: 200px;
+}
+
+/* UI for system and language selection */
+.systems-list {
+	margin: 0 auto;
+	margin-bottom: 5px;
+	background-color: rgb(220, 210, 240);
+	width: 700px;
+	padding: 2px;
+	color: rgb(60, 40, 100);
+	border: 1px solid rgb(180, 160, 200);
+	border-radius: 10px;
+}
+
+.systems-list ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.systems-list ul li {
+	display: inline;
+	margin: 0 10px;
+}
