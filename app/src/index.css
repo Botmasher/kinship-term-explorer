@@ -6,26 +6,42 @@ body {
 }
 
 .app-title {
+	position: absolute;
+	height: 100px;
+	left: 50%;
+	-webkit-transform: translate(-50%);
+	transform: translate(-50%);
 	font-family: 'Over the Rainbow', cursive;
 }
 
-/* make space for UI above Unity player */
-.webgl-content {
-	margin-top: 380px;
+#game-menu {
+	position: absolute;
+	margin-top: 100px;
+	height: 150px;
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translate(-50%);
+	transform: translate(-50%);
 }
 
-/* Unity player (absolutely positioned in webgl-style.css) */
+/* player absolutely positioned in webgl-style.css */
+.webgl-content {
+	margin-top: 200px;
+	z-index: -1;
+}
+
+/* project dimensions as set in Unity*/
 #gameContainer {
-	width: 950px;
-	height: 430px;
+	width: 992px;
+	height: 558px;
 }
 
 .webgl-content .footer {
-	margin-bottom: 200px;
+	margin-bottom: 100px;
 }
 
 /* UI for system and language selection */
-.systems-list {
+.systems-list  {
 	margin: 0 auto;
 	margin-bottom: 5px;
 	background-color: rgb(220, 210, 240);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { GameMenu } from './GameMenu';
+import GameMenu from './GameMenu';
 import { GameContainer } from './GameContainer';
 
 // TODO rework data to default load primaries per system (current "Primary" would be for Sudanese)
@@ -12,8 +12,12 @@ class App extends Component {
 			currentSystem: 'Primary',
 			currentLanguage: 'Primary',
 			systems: {
-				'Primary': ['Primary'],
-				'Inuit': ['English', 'Iñupiaq']
+				'Inuit': ['English', 'Iñupiaq'],
+				'Hawaiian': ['Hawaiian'],
+				'Sudanese': ['Latin'],
+				'Iroquois': ['Yanomamö', 'Navajo'],
+				'Crow': ['Akan'],
+				'Omaha': ['Igbo', 'Dani']
 			}
 		};
 	}
@@ -23,7 +27,7 @@ class App extends Component {
 		this.setState({currentSystem: systemName, currentLanguage: languageName});
 	};
 
-	handleUpdateSystem = systemName => this.setState({currentSystem: systemName});
+	handleUpdateSystem = systemName => this.setState({currentSystem: systemName, currentLanguage: 'Primitive'});
 
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
@@ -33,7 +37,6 @@ class App extends Component {
 			<div className="App">
 				<h1 className="app-title">Kinship Term Explorer</h1>
 				<GameMenu
-					style={{height: "40%"}}
 					handleUpdateTreeLabels={this.handleUpdateTreeLabels}
 					handleUpdateSystem={this.handleUpdateSystem}
 					systemsData={systems}
@@ -41,7 +44,6 @@ class App extends Component {
 					language={currentLanguage}
 				/>
 				<GameContainer
-					style={{height: "60%"}}
 					title={"Kinship Term Explorer"}
 					setFullscreen={this.setFullscreen}
 				/>

@@ -8,12 +8,12 @@
 			manifest.json provides metadata used when your web app is added to the
 			homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
 		-->
-		<link rel="shortcut icon" href="%PUBLIC_URL%/unity/favicon.ico">
-		<link rel="stylesheet" href="%PUBLIC_URL%/unity/webgl-style.css">
-		<script src="%PUBLIC_URL%/unity/UnityProgress.js"></script>  
-		<script src="%PUBLIC_URL%/unity/build_02/UnityLoader.js"></script>
+		<link rel="shortcut icon" href="%PUBLIC_URL%/build/favicon.ico">
+		<link rel="stylesheet" href="%PUBLIC_URL%/build/webgl-style.css">
+		<script src="%PUBLIC_URL%/build/UnityProgress.js"></script>  
+		<script src="%PUBLIC_URL%/build/Build/UnityLoader.js"></script>
 		<script>
-			var gameInstance = UnityLoader.instantiate("gameContainer", "%PUBLIC_URL%/unity/build_02/build_02.json", {onProgress: UnityProgress});
+			var gameInstance = UnityLoader.instantiate("gameContainer", "%PUBLIC_URL%/build/Build/build.json", {onProgress: UnityProgress});
 		</script>
 
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json">

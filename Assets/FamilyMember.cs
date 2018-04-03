@@ -10,6 +10,7 @@ public class FamilyMember : MonoBehaviour {
 	public int labelLineLength = 7;
 	public bool isEgo = false;
 	bool markingEgo = false;
+	Color textColor = Color.black;
 
 	// TODO "older" or "younger" reference for relative age-marked terms in systems that use them
 	string _AgeMarking;
@@ -53,6 +54,7 @@ public class FamilyMember : MonoBehaviour {
 	}
 
 	void Update() {
+		// cross fade member color on label change
 		if (this.recolor) {
 			if (this.primaryMaterial.color != this.color) {
 				this.primaryMaterial.color = Color.Lerp (this.primaryMaterial.color, this.color, Time.deltaTime);
@@ -60,6 +62,11 @@ public class FamilyMember : MonoBehaviour {
 				this.recolor = false;
 			}
 		}
+
+		// fade in text color for changed labels
+		//if (this.displayText.color != this.textColor) {
+		//	this.displayText.color = Color.Lerp (this.displayText.color, this.textColor, Time.deltaTime*100f);
+		//}
 
 		// change ego on click
 		if (this.isEgo && Input.GetButtonDown ("Fire1")) {
@@ -120,7 +127,7 @@ public class FamilyMember : MonoBehaviour {
 
 		// TODO color text based on member color
 
-		StartCoroutine ("RandomizeRelabeling");
+		this.RandomizeRelabeling ();
 	}
 
 	public void LabelAsEgo (string egoName="(you)") {
@@ -130,9 +137,8 @@ public class FamilyMember : MonoBehaviour {
 		this.displayText.fontStyle = FontStyle.Italic;
 	}
 
-	IEnumerator RandomizeRelabeling () {
-		this.displayText.text = "";
-		yield return new WaitForSeconds (Random.Range(5f, 50f) * Time.deltaTime);
+	void RandomizeRelabeling () {
+		//this.displayText.color = new Color (this.displayText.color.r, this.displayText.color.g, this.displayText.color.b, 0f);
 		string[] labelWords = this.label.Split ();
 		string formattedLabel = "";
 		int currentLineLength = 0;
@@ -151,7 +157,6 @@ public class FamilyMember : MonoBehaviour {
 		}
 		this.displayText.text = formattedLabel;
 		this.recolor = true;
-		yield return null;
 	}
 
 }
