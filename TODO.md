@@ -85,6 +85,10 @@
 	- [ ] _Lengua y cultura Yanomami_ for proposed grandparent terms
 	- [ ] http://www.twi.bb/ for proposed grandparent terms
 	- [ ] explain: many cultural complications behind the simple terms used here, e.g. for [Igbo](https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/igbo_terms.html)
+	- [ ] Navajo:
+		- http://www.unco.edu/library/pdf/Navajo_English_Dictionary.pdf
+		- https://anthrosource.onlinelibrary.wiley.com/doi/pdf/10.1525/aa.1970.72.6.02a00190
+		- http://navajopeople.org/blog/ke-dine-navajo-kinship-system/
 
 ## Testing
 - [ ] set up tests

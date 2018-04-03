@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #d3dbe3;
 }
 
 .app-title {
@@ -15,8 +16,8 @@ body {
 
 /* Unity player (absolutely positioned in webgl-style.css) */
 #gameContainer {
-	width: 960px;
-	height: 600px;
+	width: 950px;
+	height: 430px;
 }
 
 .webgl-content .footer {
