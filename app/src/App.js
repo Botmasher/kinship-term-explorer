@@ -9,7 +9,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentSystem: 'Primary',
+			currentSystem: '',
 			currentLanguage: 'Primary',
 			systems: {
 				'Inuit': ['English', 'Iñupiaq'],
@@ -27,7 +27,10 @@ class App extends Component {
 		this.setState({currentSystem: systemName, currentLanguage: languageName});
 	};
 
-	handleUpdateSystem = systemName => this.setState({currentSystem: systemName, currentLanguage: 'Primitive'});
+	handleUpdateSystem = systemName => {
+		window.gameInstance && window.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', 'Primary');
+		this.setState({currentSystem: systemName, currentLanguage: 'Primary'});
+	};
 
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
