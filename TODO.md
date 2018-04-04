@@ -29,8 +29,10 @@
 	- [X] select an example (labels)
 	- [X] display current system being viewed
 	- [X] display current language being viewed
-- [ ] presentation
-	- [ ] 
+- [ ] redo list and state to focus on each system rather than selecting languages
+	- [ ] just display one example language per system
+	- [ ] display system descriptions
+	- [ ] style and keyframe descriptions
 - [ ] create start screen?
 	- [ ] sketch draft image
 	- [ ] implement first draft start screen

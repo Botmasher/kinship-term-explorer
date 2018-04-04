@@ -9,12 +9,12 @@
 			homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
 		-->
 		<link href="https://fonts.googleapis.com/css?family=Montez|Open+Sans|Over+the+Rainbow" rel="stylesheet">
-		<link rel="shortcut icon" href="%PUBLIC_URL%/build/favicon.ico">
-		<link rel="stylesheet" href="%PUBLIC_URL%/build/webgl-style.css">
-		<script src="%PUBLIC_URL%/build/UnityProgress.js"></script>  
-		<script src="%PUBLIC_URL%/build/Build/UnityLoader.js"></script>
+		<link rel="shortcut icon" href="%PUBLIC_URL%/unity/favicon.ico">
+		<link rel="stylesheet" href="%PUBLIC_URL%/unity/webgl-style.css">
+		<script src="%PUBLIC_URL%/unity/UnityProgress.js"></script>  
+		<script src="%PUBLIC_URL%/unity/production/UnityLoader.js"></script>
 		<script>
-			var gameInstance = UnityLoader.instantiate("gameContainer", "%PUBLIC_URL%/build/Build/build.json", {onProgress: UnityProgress});
+			var gameInstance = UnityLoader.instantiate("gameContainer", "%PUBLIC_URL%/unity/production/build.json", {onProgress: UnityProgress});
 		</script>
 
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
