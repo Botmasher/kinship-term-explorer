@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import GameMenu from './GameMenu';
 import { GameContainer } from './GameContainer';
+//import '' from 'utils';
 
 // TODO rework data to default load primaries per system (current "Primary" would be for Sudanese)
 
@@ -38,7 +39,9 @@ class App extends Component {
 		const { systems, currentLanguage, currentSystem } = this.state;
 		return (
 			<div className="App">
-				<h1 className="app-title">Kinship Term Explorer</h1>
+				<h1 className="app-title">
+					<span className="letter-decoration">K</span>inship <span className="letter-decoration">T</span>erm <span className="letter-decoration">E</span>xplorer
+				</h1>
 				<GameMenu
 					handleUpdateTreeLabels={this.handleUpdateTreeLabels}
 					handleUpdateSystem={this.handleUpdateSystem}

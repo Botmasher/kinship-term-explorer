@@ -1,6 +1,6 @@
 # Kinship Term Explorer
 
-This app explores the world's kinship terminology around the world. It uses the traditional categories: "Crow", "Omaha", "Iroquois", "Eskimo", "Sudanese" and "Hawaiian". These buckets are approachable for starters but bring up debates among kinship anthropologists (more on that below).
+This app explores kinship terminology around the world. It uses six traditional categories from anthropology: "Crow", "Omaha", "Iroquois", "Eskimo", "Sudanese" and "Hawaiian". These buckets are approachable for starters but bring up debates among kinship anthropologists (more on that below).
 
 ## Why does this exist?
 

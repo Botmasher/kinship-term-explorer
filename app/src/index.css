@@ -2,32 +2,37 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #d3dbe3;
+  background-color: #444db7;
 }
 
 .app-title {
-	position: absolute;
-	height: 100px;
-	left: 50%;
-	-webkit-transform: translate(-50%);
-	transform: translate(-50%);
-	font-family: 'Over the Rainbow', cursive;
+	font-family: 'Montez', 'Over the Rainbow', cursive;
+	font-size: 40px;
+	letter-spacing: 2px;
+	font-weight: normal;
+	color: white;
+	-webkit-transform: scale(1.2, 1);
+	text-shadow: 4px 4px 6px black;
+}
+
+.letter-decoration {
+	color: #a5bbff;
+	font-size: 50px;
 }
 
 #game-menu {
-	position: absolute;
-	margin-top: 100px;
 	height: 150px;
-	position: absolute;
-	left: 50%;
-	-webkit-transform: translate(-50%);
-	transform: translate(-50%);
 }
 
 /* player absolutely positioned in webgl-style.css */
 .webgl-content {
-	margin-top: 200px;
 	z-index: -1;
+}
+
+.webgl-content {
+	margin: 0 auto;
+	width: 992px;
+	height: 558px;
 }
 
 /* project dimensions as set in Unity*/

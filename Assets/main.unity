@@ -202,14 +202,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   member: {fileID: 1245541203526742, guid: dde12b12377564b43988f11a494aab58, type: 2}
-  tieNarrow3: {fileID: 1195330806842332, guid: c93500c53dd894a10aa28fb180b1dff7, type: 2}
-  tieNarrow2: {fileID: 1620011180663370, guid: 349dd935114934edbb81c12a2d30dc79, type: 2}
-  tieWide3: {fileID: 1024150932143450, guid: 1acfe3a37ebf440488d55259ed4a0a1f, type: 2}
-  tieSpouse: {fileID: 1727066097725236, guid: 9e8ed9da59387414eb2d68bbcc586111, type: 2}
+  tieNarrow3: {fileID: 1856044584096116, guid: f70991a8f92984e0fa8c5a7914ba9851, type: 2}
+  tieNarrow2: {fileID: 1039847778519730, guid: ac17b802acd3f475694b1516dfbee56c, type: 2}
+  tieWide3: {fileID: 1013558452066956, guid: a7ac1b4cd6c0948a897be73063f1dad2, type: 2}
+  tieSpouse: {fileID: 1684870130109544, guid: e613e83f603964afebaece248fffac37, type: 2}
+  tieEquals: {fileID: 1959768993003910, guid: ee6188b7959974ff8b1fe69c5e809f70, type: 2}
   nodesManager: {fileID: 970866730}
   origin: {x: 0, y: 0}
   spacingX: 1.5
-  spacingY: 2.5
+  spacingY: 3
 --- !u!4 &596316568
 Transform:
   m_ObjectHideFlags: 0
@@ -402,7 +403,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 986104564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 2, z: -10}
+  m_LocalPosition: {x: 0.05, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -434,7 +435,7 @@ Transform:
   m_GameObject: {fileID: 1835025072}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 1}
-  m_LocalScale: {x: 2.2, y: 1, z: 1.2}
+  m_LocalScale: {x: 2.5, y: 1, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
