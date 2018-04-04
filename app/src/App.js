@@ -1,18 +1,39 @@
 import React, { Component } from 'react';
-import './App.css';
 import GameMenu from './GameMenu';
 import { GameContainer } from './GameContainer';
-//import '' from 'utils';
+//import { systemsData } from './data';
 
-// TODO rework data to default load primaries per system (current "Primary" would be for Sudanese)
+// TODO load systems setup data as separate module
+	// - include description of each system in data
+	// - restructure state
+	/*
+		{
+			systems: {
+				'system_id': {
+					name: '',
+					languages: [],
+					description: ''
+				},
+				...
+				'system_id': {
+					name: '',
+					languages: [],
+					description: ''
+				}
+			}
+		}
+	*/
+	// - flip through descriptions as each system is selected
+	// - just pick one canonical example (systems.sysName.languages[0]) for now
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentSystem: '',
-			currentLanguage: 'Primary',
+			currentSystem: '(Global Types)',
+			currentLanguage: '',
 			systems: {
+				'Global Types': ['Primary'],
 				'Inuit': ['English', 'Iñupiaq'],
 				'Hawaiian': ['Hawaiian'],
 				'Sudanese': ['Latin'],

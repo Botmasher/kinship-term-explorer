@@ -21,11 +21,10 @@ class GameMenu extends Component {
 		return (
 			<div id="game-menu">
 				<div className={this.state.showSubMenu ? "systems-list systems-list-anim" : "systems-list"}>
-					<h2>systems</h2>
 					<ul>
 						{Object.keys(systemsData).map(sysName => (
 							sysName === system
-								? <li key={sysName}><strong>{sysName}</strong></li> 
+								? <li className="selected" key={sysName}>{sysName}</li> 
 								: <li key={sysName}><a onClick={() => this.chooseSystem(sysName)}>{sysName}</a></li>
 						))}
 					</ul>
@@ -34,7 +33,7 @@ class GameMenu extends Component {
 							{systemsData[system].map(langName => (
 								<li key={langName}>
 									{langName === language
-										? <span><strong>{language}</strong></span>
+										? <span><strong>{language} terms</strong></span>
 										: <a onClick={() => handleUpdateTreeLabels(system, langName)}>{langName} terms</a>
 									}
 								</li>

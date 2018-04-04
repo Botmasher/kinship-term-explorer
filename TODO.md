@@ -12,10 +12,10 @@
 	- [X] basic primitive nodes
 	- [X] basic primitive ties
 	- [X] upgrade ties to reflect custom spacing and relationships
-- [ ] create better visuals
-	- [ ] better sprites for ties
+- [X] create better visuals
+	- [X] better sprites for ties
 	- [X] background
-	- [ ] label repopulate so at least Hawaiian type is not so jarring when switching "you"
+	- [X] label repopulate so at least Hawaiian type is not so jarring when switching "you"
 - [X] place text over nodes
 	- [X] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
 	- [X] place text for any kin term labels
@@ -23,13 +23,15 @@
 	- [X] parent empty for handling data display and presentation choice logic
 	- [X] cube child object for coloring and rotation
 	- [X] text mesh child object for displaying labels
-- [ ] create UI menu
-	- [ ] display primary terms by default (compounds)
-	- [ ] select a system (types)
-	- [ ] select an example (labels)
-	- [ ] display current system being viewed
-	- [ ] display current language being viewed
-- [ ] create start screen
+- [X] create UI menu
+	- [X] display primary terms by default (compounds)
+	- [X] select a system (types)
+	- [X] select an example (labels)
+	- [X] display current system being viewed
+	- [X] display current language being viewed
+- [ ] presentation
+	- [ ] 
+- [ ] create start screen?
 	- [ ] sketch draft image
 	- [ ] implement first draft start screen
 
@@ -69,12 +71,12 @@
 
 ### JSON data
 - [X] serialize JSON object
-- [ ] combine terminology and label map
+- [X] combine terminology and label map
 	- [X] id is a compound string, like `"FZ"`
 	- [X] language name, like `"Tongan"`
 	- [X] compound string, like `"FZ"`
 	- [X] perhaps a "language" for displaying compounds, like `"Primary": {..., "father's sister", ...}`
-	- [ ] fill out data from representative languages
+	- [X] fill out data from representative languages
 	- [X] arrange data to handle terms marked relative to state of ego
 		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
 		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
