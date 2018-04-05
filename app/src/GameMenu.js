@@ -7,7 +7,7 @@ class GameMenu extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showSubMenu: false
+			showSubMenu: true
 		};
 	}
 
@@ -17,28 +17,19 @@ class GameMenu extends Component {
 	}
 
 	render() {
-		const { systemsData, system, language, handleUpdateTreeLabels, handleUpdateSystem } = this.props;
+		const { systems, currentSystemId, currentLanguage, currentDescription, handleUpdateSystem } = this.props;
 		return (
 			<div id="game-menu">
 				<div className={this.state.showSubMenu ? "systems-list systems-list-anim" : "systems-list"}>
 					<ul>
-						{Object.keys(systemsData).map(sysName => (
-							sysName === system
-								? <li className="selected" key={sysName}>{sysName}</li> 
-								: <li key={sysName}><a onClick={() => this.chooseSystem(sysName)}>{sysName}</a></li>
+						{systems.map(systemMap => (
+							systemMap.id === currentSystemId
+								? <li className="selected" key={systemMap.id}>{systemMap.name}</li> 
+								: <li key={systemMap.id}><a onClick={() => this.chooseSystem(systemMap.id)}>{systemMap.name}</a></li>
 						))}
 					</ul>
 					{this.state.showSubMenu && (
-						<ul>
-							{systemsData[system].map(langName => (
-								<li key={langName}>
-									{langName === language
-										? <span><strong>{language} terms</strong></span>
-										: <a onClick={() => handleUpdateTreeLabels(system, langName)}>{langName} terms</a>
-									}
-								</li>
-							))}
-						</ul>
+						<p>{currentLanguage}; {currentDescription}</p>
 					)}
 				</div>
 			</div>
@@ -47,11 +38,11 @@ class GameMenu extends Component {
 }
 
 GameMenu.propTypes = {
-	systemsData: PropTypes.object.isRequired,
-	system: PropTypes.string.isRequired,
-	language: PropTypes.string.isRequired,
-	handleUpdateTreeLabels: PropTypes.func.isRequired,
-	handleUpdateSystem: PropTypes.func.isRequired,
+	systems: PropTypes.object.isRequired,
+	currentSystemId: PropTypes.string.isRequired,
+	currentLanguage: PropTypes.string.isRequired,
+	currentDescription: PropTypes.string,
+	handleUpdateSystem: PropTypes.func.isRequired
 };
 
 export default GameMenu;
