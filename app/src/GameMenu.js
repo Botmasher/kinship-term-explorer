@@ -29,7 +29,7 @@ class GameMenu extends Component {
 						))}
 					</ul>
 					{this.state.showSubMenu && (
-						<p>{currentLanguage}; {currentDescription}</p>
+						<p className="system-description-anim">{currentLanguage}; {currentDescription}</p>
 					)}
 				</div>
 			</div>
