@@ -20,28 +20,25 @@ body {
 	color: white;
 	-webkit-transform: scale(1.2, 1);
 	text-shadow: 4px 4px 6px black;
+	margin: 10px 0;
 }
 
 .letter-decoration {
 	color: #a5bbff;
 	font-size: 50px;
-	animation: heartbeat infinite 20s linear;
+	animation: cycle-colors infinite 20s linear;
 }
 
 #game-menu {
 	margin: 0 auto;
-	margin-bottom: 5px;
 	width: 700px;
 	padding: 2px;
 	border-top: 1px solid rgb(180, 160, 200);
 	border-bottom: 1px solid rgb(180, 160, 200);
+	margin-bottom: -5px;
 }
 
 /* player absolutely positioned in webgl-style.css */
-.webgl-content {
-	z-index: -1;
-}
-
 .webgl-content {
 	margin: 0 auto;
 	width: 992px;
@@ -60,6 +57,7 @@ body {
 
 /* UI for system and language selection */
 .systems-list  {
+	animation: fade-in forwards 6s ease-in;
 }
 
 .systems-list ul {
@@ -97,19 +95,24 @@ a:hover {
 }
 
 .system-description-anim {
-	animation: slide-in forwards 1s ease-out;
+	animation: txt-in forwards 1s ease-out;
+	font-size: 14px;
 }
 
-@keyframes slide-in {
+@keyframes fade-in {
+	0% { opacity: 0; }
+	25% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes txt-in {
 	from {
 		opacity: 0;
-		margin-left: 1000px;
-		width: 100%;
+		transform: scale(0.9,0.9);
 	}
 	to {
 		opacity: 1;
-		margin-left: 0px;
-		width: 100%;
+		transform: scale(1,1);
 	}
 }
 
@@ -132,7 +135,7 @@ a:hover {
 	}
 }
 
-@keyframes heartbeat {
+@keyframes cycle-colors {
 	0% { color: #a5bbff; }
 	25% { color: orange; }
 	50% { color: white; }

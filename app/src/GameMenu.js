@@ -29,7 +29,9 @@ class GameMenu extends Component {
 						))}
 					</ul>
 					{this.state.showSubMenu && (
-						<p className="system-description-anim">{currentLanguage}; {currentDescription}</p>
+						<p key={currentSystemId} className="system-description-anim">
+							<em>example:</em>&nbsp; <strong>{currentLanguage}</strong>.&nbsp;&nbsp; {currentDescription}
+						</p>
 					)}
 				</div>
 			</div>
