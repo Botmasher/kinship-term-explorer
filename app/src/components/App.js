@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GameMenu from './GameMenu';
 import GameContainer from './GameContainer';
-import { store } from './store';
+import { store } from '../store';
 
 class App extends Component {
 	constructor(props) {

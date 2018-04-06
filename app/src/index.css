@@ -20,7 +20,7 @@ body {
 	color: white;
 	-webkit-transform: scale(1.2, 1);
 	text-shadow: 4px 4px 6px black;
-	margin: 10px 0;
+	margin: 8px 0;
 }
 
 .letter-decoration {
@@ -30,19 +30,23 @@ body {
 }
 
 #game-menu {
+	position: relative;
+	z-index: 9;
 	margin: 0 auto;
 	width: 700px;
 	padding: 2px;
 	border-top: 1px solid rgb(180, 160, 200);
 	border-bottom: 1px solid rgb(180, 160, 200);
-	margin-bottom: -5px;
+	margin-bottom: -15px;
 }
 
 /* player absolutely positioned in webgl-style.css */
 .webgl-content {
+	position: relative;
 	margin: 0 auto;
 	width: 992px;
 	height: 558px;
+	z-index: 0;
 }
 
 /* project dimensions as set in Unity*/
@@ -79,12 +83,14 @@ a {
 	animation: txt-hover-out;
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
+	text-decoration: none;
 }
 
 a:hover {
 	animation: txt-hover;
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
+	text-decoration: underline;
 }
 
 .systems-list .selected {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
 // TODO async response from gameInstance before enabling menu choices besides "Primary"
+// TODO break out list and submenu components
 
 class GameMenu extends Component {
 	constructor(props) {
@@ -17,7 +18,7 @@ class GameMenu extends Component {
 	}
 
 	render() {
-		const { systems, currentSystemId, currentLanguage, currentDescription, handleUpdateSystem } = this.props;
+		const { systems, currentSystemId, currentLanguage, currentDescription } = this.props;
 		return (
 			<div id="game-menu">
 				<div className={this.state.showSubMenu ? "systems-list systems-list-anim" : "systems-list"}>
@@ -30,7 +31,15 @@ class GameMenu extends Component {
 					</ul>
 					{this.state.showSubMenu && (
 						<p key={currentSystemId} className="system-description-anim">
-							<em>example:</em>&nbsp; <strong>{currentLanguage}</strong>.&nbsp;&nbsp; {currentDescription}
+							{currentLanguage !== "Primary" && (
+								<span>
+									<em>example:</em>&nbsp;
+									<a href={`https://en.wikipedia.org/wiki/${currentLanguage}_language`}>
+										<strong>{currentLanguage}</strong>
+									</a>.&nbsp;&nbsp;
+								</span>
+							)}
+							<span>{currentDescription}</span>
 						</p>
 					)}
 				</div>
