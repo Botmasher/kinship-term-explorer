@@ -32,6 +32,10 @@ class App extends Component {
 
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
+	componentDidMount() {
+		window.setTimeout(() => this.setState({gameLoaded: true}), 5000);
+	}
+
 	render() {
 		console.log(window.gameLoaded);
 		const { currentSystem, currentLanguage } = this.state;
@@ -41,17 +45,20 @@ class App extends Component {
 				<h1 className="app-title">
 					<span className="letter-decoration">K</span>inship <span className="letter-decoration">T</span>erm <span className="letter-decoration">E</span>xplorer
 				</h1>
-				<GameMenu
-					handleUpdateTreeLabels={this.handleUpdateTreeLabels}
-					handleUpdateSystem={this.handleUpdateSystem}
-					systems={Object.keys(systems).reduce((systemNameMaps, systemId) => [
-						...systemNameMaps,
-						{ id: systemId, name: systems[systemId].name }
-					], [])}
-					currentSystemId={currentSystem}
-					currentLanguage={currentLanguage}
-					currentDescription={systems[currentSystem].description}
-				/>
+				{this.state.gameLoaded
+					?	<GameMenu
+							handleUpdateTreeLabels={this.handleUpdateTreeLabels}
+							handleUpdateSystem={this.handleUpdateSystem}
+							systems={Object.keys(systems).reduce((systemNameMaps, systemId) => [
+								...systemNameMaps,
+								{ id: systemId, name: systems[systemId].name }
+							], [])}
+							currentSystemId={currentSystem}
+							currentLanguage={currentLanguage}
+							currentDescription={systems[currentSystem].description}
+						/>
+					: <p>Loading game...</p>
+				}
 				<GameContainer
 					title={"Kinship Term Explorer"}
 					setFullscreen={this.setFullscreen}
