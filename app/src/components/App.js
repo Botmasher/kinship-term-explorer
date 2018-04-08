@@ -7,7 +7,6 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			gameLoaded: false,
 			currentSystem: 'global',
 			currentLanguage: 'Primary'
 		};
@@ -32,12 +31,7 @@ class App extends Component {
 
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
-	componentDidMount() {
-		window.setTimeout(() => this.setState({gameLoaded: true}), 5000);
-	}
-
 	render() {
-		console.log(window.gameLoaded);
 		const { currentSystem, currentLanguage } = this.state;
 		const { systems } = store;
 		return (
@@ -45,20 +39,17 @@ class App extends Component {
 				<h1 className="app-title">
 					<span className="letter-decoration">K</span>inship <span className="letter-decoration">T</span>erm <span className="letter-decoration">E</span>xplorer
 				</h1>
-				{this.state.gameLoaded
-					?	<GameMenu
-							handleUpdateTreeLabels={this.handleUpdateTreeLabels}
-							handleUpdateSystem={this.handleUpdateSystem}
-							systems={Object.keys(systems).reduce((systemNameMaps, systemId) => [
-								...systemNameMaps,
-								{ id: systemId, name: systems[systemId].name }
-							], [])}
-							currentSystemId={currentSystem}
-							currentLanguage={currentLanguage}
-							currentDescription={systems[currentSystem].description}
-						/>
-					: <p>Loading game...</p>
-				}
+				<GameMenu
+					handleUpdateTreeLabels={this.handleUpdateTreeLabels}
+					handleUpdateSystem={this.handleUpdateSystem}
+					systems={Object.keys(systems).reduce((systemNameMaps, systemId) => [
+						...systemNameMaps,
+						{ id: systemId, name: systems[systemId].name }
+					], [])}
+					currentSystemId={currentSystem}
+					currentLanguage={currentLanguage}
+					currentDescription={systems[currentSystem].description}
+				/>
 				<GameContainer
 					title={"Kinship Term Explorer"}
 					setFullscreen={this.setFullscreen}
