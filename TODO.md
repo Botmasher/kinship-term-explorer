@@ -29,13 +29,13 @@
 	- [X] select an example (labels)
 	- [X] display current system being viewed
 	- [X] display current language being viewed
-- [ ] redo list and state to focus on each system rather than selecting languages
-	- [ ] just display one example language per system
-	- [ ] display system descriptions
-	- [ ] style and keyframe descriptions
-- [ ] create start screen?
-	- [ ] sketch draft image
-	- [ ] implement first draft start screen
+- [X] redo list and state to focus on each system rather than selecting languages
+	- [X] just display one example language per system
+	- [X] display system descriptions
+	- [X] style and keyframe descriptions
+- [ ] create start display
+	- [ ] show message while loading
+	- [ ] once loaded, show kinship system selection
 
 ### logic
 - [X] set state of each member node
@@ -98,6 +98,14 @@
 - [ ] set up tests
 
 ## Beyond
+
+### feedback
+- [ ] make it clear to user the difference between system name (e.g. Sudanese) and language (e.g. Latin)
+- [ ] extend generations below ego, e.g. Dutch nephew/niece = cousin terms (https://www.patreon.com/posts/slapping-labels-17717106)
+	- [ ] changes game logic and family tree builder
+	- [ ] presentation asset needs for generating -1 and -2 ties / members
+	- [ ] add data to every language in the JSON
+	- [ ] figure out dynamic node placement to make generating trees like this flexible
 
 ### presentation and logic
 - [ ] allow switching between toggling vs cycling ego marking
