@@ -59,9 +59,23 @@ body {
 	margin-bottom: 100px;
 }
 
+a {
+	animation: txt-hover-out;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	text-decoration: none;
+}
+
+a:hover {
+	animation: txt-hover;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+	text-decoration: underline;
+}
+
 /* UI for system and language selection */
 .systems-list  {
-	/* animation: fade-in forwards 6s ease-in; */
+	animation: fade-in forwards 1s ease-in;
 }
 
 .systems-list ul {
@@ -79,18 +93,8 @@ body {
 	cursor: pointer;
 }
 
-a {
-	animation: txt-hover-out;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
-	text-decoration: none;
-}
-
-a:hover {
-	animation: txt-hover;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
-	text-decoration: underline;
+.menu-loading {
+	animation: fade-out forwards 3s ease-out;
 }
 
 .systems-list .selected {
@@ -100,15 +104,24 @@ a:hover {
 	animation-fill-mode: forwards;
 }
 
+.systems-list p {
+	font-size: 14px;
+}
+
 .system-description-anim {
 	animation: txt-in forwards 1s ease-out;
-	font-size: 14px;
 }
 
 @keyframes fade-in {
 	0% { opacity: 0; }
 	25% { opacity: 0; }
 	100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	100% { opacity: 0; }
 }
 
 @keyframes txt-in {

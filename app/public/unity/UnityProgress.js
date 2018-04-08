@@ -21,7 +21,5 @@ function UnityProgress(gameInstance, progress) {
   gameInstance.progress.empty.style.width = (100 * (1 - progress)) + "%";
   if (progress >= 1) {
     gameInstance.logo.style.display = gameInstance.progress.style.display = "none";
-    console.log("Loaded game 100%");
-    window.gameLoaded = true;
   }
 }

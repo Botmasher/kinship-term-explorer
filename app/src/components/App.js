@@ -7,6 +7,8 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			isLoaded: false,
+			unloadedClicks: 0,
 			currentSystem: 'global',
 			currentLanguage: 'Primary'
 		};
@@ -18,11 +20,14 @@ class App extends Component {
 		this.setState({currentSystem: systemName, currentLanguage: languageName});
 	};
 
-	// TODO check if gameInstance loading complete before setting ui or passing data
 	handleUpdateSystem = systemName => {
-		if (!window.gameLoaded) return;
+		if (!window.gameLoaded) {
+			this.setState((prevState) => ({unloadedClicks: prevState.unloadedClicks+1}));
+			return;
+		}
 		const { systems } = store;
-		this.setState({gameLoaded: true, currentSystem: systemName, currentLanguage: systems[systemName].languages[0]}, () => (
+		// pick the first language in the system and message game to update using its data for that language
+		this.setState({isLoaded: true, currentSystem: systemName, currentLanguage: systems[systemName].languages[0]}, () => (
 			window.gameInstance && (
 				window.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', systems[systemName].languages[0])
 			)
@@ -32,7 +37,7 @@ class App extends Component {
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
 	render() {
-		const { currentSystem, currentLanguage } = this.state;
+		const { currentSystem, currentLanguage, isLoaded, unloadedClicks } = this.state;
 		const { systems } = store;
 		return (
 			<div className="App">
@@ -49,6 +54,8 @@ class App extends Component {
 					currentSystemId={currentSystem}
 					currentLanguage={currentLanguage}
 					currentDescription={systems[currentSystem].description}
+					isGameLoaded={isLoaded}
+					unloadedClicks={unloadedClicks}
 				/>
 				<GameContainer
 					title={"Kinship Term Explorer"}

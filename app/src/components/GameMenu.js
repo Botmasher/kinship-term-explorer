@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 // TODO async response from gameInstance before enabling menu choices besides "Primary"
 // TODO break out list and submenu components
 
-const GameMenu = ({ systems, currentSystemId, currentLanguage, currentDescription, handleUpdateSystem }) => (
+const GameMenu = ({ systems, currentSystemId, currentLanguage, currentDescription, handleUpdateSystem, isGameLoaded, unloadedClicks }) => (
 	<div id="game-menu">
 		<div className="systems-list systems-list-anim">
 			<ul>
@@ -14,7 +14,7 @@ const GameMenu = ({ systems, currentSystemId, currentLanguage, currentDescriptio
 						: <li key={systemMap.id}><a onClick={() => handleUpdateSystem(systemMap.id)}>{systemMap.name}</a></li>
 				))}
 			</ul>
-			{window.gameLoaded
+			{isGameLoaded
 				?	<p key={currentSystemId} className="system-description-anim">
 						{currentLanguage !== "Primary" && (
 							<span>
@@ -26,7 +26,7 @@ const GameMenu = ({ systems, currentSystemId, currentLanguage, currentDescriptio
 						)}
 						<span>{currentDescription}</span>
 					</p>
-				: <p>Currently loading game instance.</p>
+				: <p key={`unloaded-message-${unloadedClicks}`} className="menu-loading">Currently loading game instance.<br/><br/></p>
 			}
 		</div>
 	</div>
@@ -37,7 +37,9 @@ GameMenu.propTypes = {
 	currentSystemId: PropTypes.string.isRequired,
 	currentLanguage: PropTypes.string.isRequired,
 	currentDescription: PropTypes.string,
-	handleUpdateSystem: PropTypes.func.isRequired
+	handleUpdateSystem: PropTypes.func.isRequired,
+	isGameLoaded: PropTypes.bool.isRequired,
+	unloadedClicks: PropTypes.number.isRequired
 };
 
 export default GameMenu;
