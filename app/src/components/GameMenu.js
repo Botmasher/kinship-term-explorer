@@ -49,7 +49,7 @@ class GameMenu extends Component {
 }
 
 GameMenu.propTypes = {
-	systems: PropTypes.object.isRequired,
+	systems: PropTypes.array.isRequired,
 	currentSystemId: PropTypes.string.isRequired,
 	currentLanguage: PropTypes.string.isRequired,
 	currentDescription: PropTypes.string,

@@ -7,6 +7,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			gameLoaded: false,
 			currentSystem: 'global',
 			currentLanguage: 'Primary'
 		};
@@ -14,14 +15,15 @@ class App extends Component {
 
 	// TODO rework this function for updating selected language (not used in demo but handy in future)
 	handleUpdateTreeLabels = (systemName, languageName) => {
-		window.gameInstance && window.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', languageName);
+		window.gameInstance && window.gameLoaded && window.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', languageName);
 		this.setState({currentSystem: systemName, currentLanguage: languageName});
 	};
 
 	// TODO check if gameInstance loading complete before setting ui or passing data
 	handleUpdateSystem = systemName => {
+		if (!window.gameLoaded) return;
 		const { systems } = store;
-		this.setState({currentSystem: systemName, currentLanguage: systems[systemName].languages[0]}, () => (
+		this.setState({gameLoaded: true, currentSystem: systemName, currentLanguage: systems[systemName].languages[0]}, () => (
 			window.gameInstance && (
 				window.gameInstance.SendMessage('Nodes Manager', 'LabelFamilyMembers', systems[systemName].languages[0])
 			)
@@ -31,6 +33,7 @@ class App extends Component {
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
 	render() {
+		console.log(window.gameLoaded);
 		const { currentSystem, currentLanguage } = this.state;
 		const { systems } = store;
 		return (

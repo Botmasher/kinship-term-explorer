@@ -61,7 +61,7 @@ body {
 
 /* UI for system and language selection */
 .systems-list  {
-	animation: fade-in forwards 6s ease-in;
+	/* animation: fade-in forwards 6s ease-in; */
 }
 
 .systems-list ul {

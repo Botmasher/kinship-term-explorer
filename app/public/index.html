@@ -14,7 +14,20 @@
 		<script src="%PUBLIC_URL%/unity/UnityProgress.js"></script>  
 		<script src="%PUBLIC_URL%/unity/production/UnityLoader.js"></script>
 		<script>
-			var gameInstance = UnityLoader.instantiate("gameContainer", "%PUBLIC_URL%/unity/production/build.json", {onProgress: UnityProgress});
+			var gameLoaded = false;
+			var gameInstance = UnityLoader.instantiate(
+				"gameContainer",
+				"%PUBLIC_URL%/unity/production/build.json",
+				{
+					onProgress: UnityProgress,
+					Module: {
+						onRuntimeInitialized: () => {
+							UnityProgress(gameInstance, "complete");
+							console.log("loaded web player!");
+						}
+					}
+				}
+			);
 		</script>
 
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
