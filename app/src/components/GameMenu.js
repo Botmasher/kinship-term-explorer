@@ -1,32 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-
-// TODO async response from gameInstance before enabling menu choices besides "Primary"
-// TODO break out list and submenu components
+import SystemsMenu from './SystemsMenu';
+import SystemDescription from './SystemDescription';
 
 const GameMenu = ({ systems, currentSystemId, currentLanguage, currentDescription, handleUpdateSystem, isGameLoaded, unloadedClicks }) => (
 	<div id="game-menu">
 		<div className="systems-list systems-list-anim">
-			<ul>
-				{systems.map(systemMap => (
-					systemMap.id === currentSystemId
-						? <li className="selected" key={systemMap.id}>{systemMap.name}</li> 
-						: <li key={systemMap.id}><a onClick={() => handleUpdateSystem(systemMap.id)}>{systemMap.name}</a></li>
-				))}
-			</ul>
+			<SystemsMenu systems={systems} currentSystemId={currentSystemId} handleUpdateSystem={handleUpdateSystem} />
 			{isGameLoaded
-				?	<p key={currentSystemId} className="system-description-anim">
-						{currentLanguage !== "Primary" && (
-							<span>
-								<em>example:</em>&nbsp;
-								<a href={`https://en.wikipedia.org/wiki/${currentLanguage}_language`}>
-									<strong>{currentLanguage}</strong>
-								</a>.&nbsp;&nbsp;
-							</span>
-						)}
-						<span>{currentDescription}</span>
-					</p>
-				: <p key={`unloaded-message-${unloadedClicks}`} className="menu-loading">Currently loading game instance.<br/><br/></p>
+				?	<SystemDescription currentSystemId={currentSystemId} currentLanguage={currentLanguage} currentDescription={currentDescription} />
+				: <div key={`unloaded-message-${unloadedClicks}`} className="menu-loading">Currently loading game instance.<br/><br/></div>
 			}
 		</div>
 	</div>
