@@ -33,9 +33,10 @@
 	- [X] just display one example language per system
 	- [X] display system descriptions
 	- [X] style and keyframe descriptions
-- [ ] create start display
-	- [ ] show message while loading
-	- [ ] once loaded, show kinship system selection
+- [X] create start display
+	- [X] show message when user selects a system while game loads
+	- [X] guard against changing set system/language state while game loads
+	- [X] once loaded, show kinship system selection
 
 ### logic
 - [X] set state of each member node

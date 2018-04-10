@@ -36,8 +36,7 @@ body {
 	width: 700px;
 	padding: 2px;
 	border-top: 1px solid rgb(180, 160, 200);
-	border-bottom: 1px solid rgb(180, 160, 200);
-	margin-bottom: -15px;
+	margin-bottom: -12px;
 }
 
 /* player absolutely positioned in webgl-style.css */
@@ -80,7 +79,6 @@ a:hover {
 
 .systems-list ul {
 	list-style-type: none;
-	padding: 0;
 }
 
 .systems-list ul li {
@@ -95,6 +93,7 @@ a:hover {
 
 .menu-loading {
 	animation: fade-out forwards 3s ease-out;
+	height: 78px;
 }
 
 .systems-list .selected {
@@ -104,12 +103,18 @@ a:hover {
 	animation-fill-mode: forwards;
 }
 
-.systems-list p {
+.systems-list div {
 	font-size: 14px;
+	margin-bottom: 10px;
 }
 
 .system-description-anim {
 	animation: txt-in forwards 1s ease-out;
+}
+
+span.system-language-label {
+	font-weight: bold;
+	text-transform: capitalize;
 }
 
 @keyframes fade-in {

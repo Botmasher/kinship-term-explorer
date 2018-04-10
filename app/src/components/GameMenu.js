@@ -9,7 +9,7 @@ const GameMenu = ({ systems, currentSystemId, currentLanguage, currentDescriptio
 			<SystemsMenu systems={systems} currentSystemId={currentSystemId} handleUpdateSystem={handleUpdateSystem} />
 			{isGameLoaded
 				?	<SystemDescription currentSystemId={currentSystemId} currentLanguage={currentLanguage} currentDescription={currentDescription} />
-				: <div key={`unloaded-message-${unloadedClicks}`} className="menu-loading">Currently loading game instance.<br/><br/></div>
+				: <div key={`unloaded-message-${unloadedClicks}`} className="menu-loading"><br/>Currently loading game instance.<br/></div>
 			}
 		</div>
 	</div>
