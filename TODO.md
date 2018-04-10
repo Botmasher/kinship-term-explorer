@@ -83,7 +83,7 @@
 	- [X] arrange data to handle terms marked relative to state of ego
 		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
 		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
-- [ ] cite sources
+- [ ] cite sources (link currently in footer)
 	- [ ] https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/termsys.html
 	- [ ] Wiktionary
 	- [ ] wehewehe.org
@@ -109,6 +109,11 @@
 	- [ ] figure out dynamic node placement to make generating trees like this flexible
 
 ### presentation and logic
+- [ ] switch description when game has loaded
+	- [ ] (a better way than loop checks of `window.gameLoaded`)
+	- [ ] attach async work to the window and have React component follow up on it
+	- [ ] see `Assets/plugins/C~.jslib` for method call when game finishes loading
+- [ ] print text displaying "you" as older/younger brother/sister
 - [ ] allow switching between toggling vs cycling ego marking
 	- [ ] family member behavior logic
 	- [ ] interface for user to hit switch
