@@ -36,6 +36,16 @@ class App extends Component {
 
 	setFullscreen = () => window.gameInstance.SetFullscreen(1);
 
+	componentDidMount() {
+		// check that game has fully loaded (used for e.g. mounting menu description)
+		if (!this.state.isLoaded) {
+			const interval = window.setInterval(() => {
+				window.gameLoaded && window.clearInterval(interval);
+				window.gameLoaded && this.setState({isLoaded: true});
+			}, 1000);
+		}
+	}
+
 	render() {
 		const { currentSystem, currentLanguage, isLoaded, unloadedClicks } = this.state;
 		const { systems } = store;
