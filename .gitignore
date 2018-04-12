@@ -12,9 +12,6 @@ Desktop.ini
 
 *.log*
 
-# REACT
-/node_modules
-
 # UNITY
 
 [Ll]ibrary/

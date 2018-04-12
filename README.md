@@ -1,25 +1,59 @@
-# Kinship Term Explorer
+# Kinship Term Explorer TreeBuilder
 
-This app explores kinship terminology around the world. It uses six traditional categories from anthropology: "Crow", "Omaha", "Iroquois", "Eskimo", "Sudanese" and "Hawaiian". These buckets are approachable for starters but bring up debates among kinship anthropologists (more on that below).
+This is a kinship terminology tree builder created in Unity that serves as a "backend" and data visualization for the [Kinship Term Explorer](https://github.com/Botmasher/kinship-explorer-app) app.
 
-## Why does this exist?
+## Description
 
-This is a leadup app for a multimedia project I'm putting together that's focused on the way languages around the world talk about family trees. Cool topic, right? Well, as I slog through the research I'm starting to crave an easy way to view and navigate these various kinship systems. I want to keep their differences straight in my head, and so far the words and diagrams aren't cutting it.
+Anthropologists traditionally break kinship terms around the world into a handful of systems. Tree diagrams are the traditional way to compare those systems. This program builds a tree of family member "types" and carries data relating types to labels in various languages.
 
-This app helps me by illustrating the way kinship terminology changes around the world. It does this based on some good old standards in kinship anthropology: our world's kinship systems.
+When it's passed a specific language, it updates the members on the tree with new states and label text based on the language's terms. Members with the same term have the same color even if their kin types are different, while different terms have different colors.
 
-## What it is. What it's not.
+Clicking ego changes ego's marking (currently "you" can be switched between brother vs sister, i.e. a MS vs MD, but you cannot change age marking for younger vs older). This showcases systems that have terms marked relative to ego.
 
-These systems *do* mean to give illustrative glances at kinship systems. They *do not* mean to be a rigorous or opinionated look at the underlying kinship research.
+This Unity code does not classify languages into distinct kin term systems. It only reads terms in a chosen language and reacts. To see these terms classified into systems, check out the frontend app linked at the top.
 
-## Academic basis
+## Getting started
 
-The kinship concepts used here are built on the Morgan-Lowie-Murdock tradition of dividing the world's languages and cultures into several kinship systems. Each system is based on standout features, and an archetypal language or region, such as "Sudanese" (for Morgan, highly descriptive) or "Hawaiian" (for Morgan, highly classificatory). These systems are still used for basic breakdowns in research, though with caveats, like in Bennardo's "Space in kinship". In particular, the reasons for slicing up the systems get debated and rejected, such as Morgan's identification of "descriptive" vs "classificatory" systems. Read gives an overview of the drawbacks of this way of classifying kinship terminology in a 2013 paper "A New Approach to Forming a Typology of Kinship Terminology Systems", where the author proposes a more consistent approach.
+### Running the project
 
-I originally included "Dravidian" in the list of systems. So far the cross-cousin dynamics of the Dravidian system seem to require wider diagrams. I will discuss Dravidian in the final project, but let's go with the six system model for this leadup project.
+The latest build lives in the frontend app linked above. To see the visualization combined with UI or to play around with the app, visit the [Kinship Term Explorer frontend](https://github.com/Botmasher/kinship-explorer-app).
 
-## Source Code and Framework
+To edit this visualization:
+- get a local copy of this project (by cloning it or however you prefer)
+- install a version of [Unity](https://store.unity.com) (developed with `2017.2.0`)
+- open Unity
+- open your local copy of this project in Unity
 
-Unlike many of my other leadup projects with their minimal interfaces, this leadup calls for a visual approach where info is geometrically positioned and selectable on screen. I've decided to start developing a scratch app using C# and Unity version `2017.2.0`. The kinship labels are stored per language in a JSON object within `/Assets/Resources/_data`. The game builds a static tree of family members, parses the JSON data, colors and labels family member objects based on data, and updates the members based on user interactions.
+### Project structure
 
-The frontend is built in React and located in `/app` and includes the main page, the Unity player and components for selecting kinship systems and example languages. The Unity build is compiled and saved under `/app/public/unity` and loaded at the head of the public `index.html`. React accesses the game session and messages its C# functions through `window.gameInstance` to pass data indicating the current language.
+Once you have the project open, take a look. A rule of thumb if you're new to Unity: be cautious about editing, adding or deleting game assets outside of Unity. It's not hard to break project associations.
+
+- (have the project open in Unity – instructions above)
+- navigate through the project folders to start making changes to `Assets`
+	- `_scripts` is where you can dig into the source code and tinker with how the program behaves
+	- `_objects` contains the primitive family member prefab and its simple animations
+	- `_mattex` houses the materials and textures applied to the family ties and the background plane
+	- `_scenes` has only the one main scene, since there are no scene transitions
+- game objects
+	- the scene starts with a light, camera and background plane
+	- manager empties run scripts for family tree setup and updates once game starts
+	- camera is stationary, but with settings adjusted from default to fit and crop the visualized tree
+	- tree ties and member objects are instantiated after the game starts
+	-	if editing objects, check in the Inspector to ensure script variable slots aren't broken or empty
+- play testing
+	- set the game window to the output resolution
+	- this resolution matches project build settings for the WebGL player
+- optionally edit files outside of Unity
+	- add your own JavaScript messaging functions to `./Assets/plugins/ClientMessaging`
+		- these methods are made available to call from the C# scripts in `_scripts/`
+	- add or edit language terms in the JSON data at `./Assets/Resources/_data/terms.json`
+
+## Project code
+
+This visualization was developed with Unity version `2017.2.0`. The core project behaviors are found under `./Assets/_scripts`. The kinship labels are stored per language in a JSON object within `/Assets/Resources/_data`.
+
+The game builds a static tree of family members, parses the JSON data, colors and labels family member objects based on data, and updates the members based on user interactions.
+
+## Contributing
+
+Both this visualization and the accompanying [frontend app](https://github.com/Botmasher/kinship-explorer-app) were built as a leadup to another project on kin terms, so they probably won't be under active development long after that one goes live. That said, if you try the project out and spot ways to fix it, submit an issue or a pull request. It's definitely appreciated if you document reproducible steps for any fixes or as much relevant context as you can for any upgrades.
