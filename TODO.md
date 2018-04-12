@@ -6,23 +6,9 @@
 - [X] draft TODO list
 
 ## Basics
+- [ ] separate out frontend TODOS and relocate to within the React project
 
-### presentation
-- [X] create static handmade family tree visuals
-	- [X] basic primitive nodes
-	- [X] basic primitive ties
-	- [X] upgrade ties to reflect custom spacing and relationships
-- [X] create better visuals
-	- [X] better sprites for ties
-	- [X] background
-	- [X] label repopulate so at least Hawaiian type is not so jarring when switching "you"
-- [X] place text over nodes
-	- [X] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
-	- [X] place text for any kin term labels
-- [X] break apart family member object
-	- [X] parent empty for handling data display and presentation choice logic
-	- [X] cube child object for coloring and rotation
-	- [X] text mesh child object for displaying labels
+### frontend app
 - [X] create UI menu
 	- [X] display primary terms by default (compounds)
 	- [X] select a system (types)
@@ -37,6 +23,19 @@
 	- [X] show message when user selects a system while game loads
 	- [X] guard against changing set system/language state while game loads
 	- [X] once loaded, show kinship system selection
+
+### visuals
+- [X] create better visuals
+	- [X] better sprites for ties
+	- [X] background
+	- [X] label repopulate so at least Hawaiian type is not so jarring when switching "you"
+- [X] place text over nodes
+	- [X] place format text for displaying strings of primaries, e.g. `"MZ"` -> `mother's sister`
+	- [X] place text for any kin term labels
+- [X] break apart family member object
+	- [X] parent empty for handling data display and presentation choice logic
+	- [X] cube child object for coloring and rotation
+	- [X] text mesh child object for displaying labels
 
 ### logic
 - [X] set state of each member node
@@ -108,11 +107,13 @@
 	- [ ] add data to every language in the JSON
 	- [ ] figure out dynamic node placement to make generating trees like this flexible
 
-### presentation and logic
+### frontend app
 - [ ] switch description when game has loaded
 	- [ ] (a better way than loop checks of `window.gameLoaded`)
 	- [ ] attach async work to the window and have React component follow up on it
 	- [ ] see `Assets/plugins/C~.jslib` for method call when game finishes loading
+
+### visualization and logic
 - [ ] print text displaying "you" as older/younger brother/sister
 - [ ] allow switching between toggling vs cycling ego marking
 	- [ ] family member behavior logic
@@ -128,7 +129,7 @@
 	- [ ] upgrade current nodes to handle setting this state
 	- [ ] upgrade current nodes/tree to handle checking this state
 - [ ] output data to browser
-	- [ ] test interfacing from within app to client
+	- [X] test interfacing from within app to client (see `ClientMessaging.jslib` plugin)
 	- [ ] output current system name
 	- [ ] output types data
 	- [ ] output current language name
