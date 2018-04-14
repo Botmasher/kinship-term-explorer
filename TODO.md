@@ -6,23 +6,7 @@
 - [X] draft TODO list
 
 ## Basics
-- [ ] separate out frontend TODOS and relocate to within the React project
-
-### frontend app
-- [X] create UI menu
-	- [X] display primary terms by default (compounds)
-	- [X] select a system (types)
-	- [X] select an example (labels)
-	- [X] display current system being viewed
-	- [X] display current language being viewed
-- [X] redo list and state to focus on each system rather than selecting languages
-	- [X] just display one example language per system
-	- [X] display system descriptions
-	- [X] style and keyframe descriptions
-- [X] create start display
-	- [X] show message when user selects a system while game loads
-	- [X] guard against changing set system/language state while game loads
-	- [X] once loaded, show kinship system selection
+- [X] separate out frontend TODOS and relocate to within the React project
 
 ### visuals
 - [X] create better visuals
@@ -82,7 +66,7 @@
 	- [X] arrange data to handle terms marked relative to state of ego
 		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
 		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
-- [ ] cite sources (link currently in footer)
+- [ ] cite sources (for now to be handled in frontend)
 	- [ ] https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/termsys.html
 	- [ ] Wiktionary
 	- [ ] wehewehe.org
@@ -100,18 +84,11 @@
 ## Beyond
 
 ### feedback
-- [ ] make it clear to user the difference between system name (e.g. Sudanese) and language (e.g. Latin)
 - [ ] extend generations below ego, e.g. Dutch nephew/niece = cousin terms (https://www.patreon.com/posts/slapping-labels-17717106)
 	- [ ] changes game logic and family tree builder
 	- [ ] presentation asset needs for generating -1 and -2 ties / members
 	- [ ] add data to every language in the JSON
 	- [ ] figure out dynamic node placement to make generating trees like this flexible
-
-### frontend app
-- [ ] switch description when game has loaded
-	- [ ] (a better way than loop checks of `window.gameLoaded`)
-	- [ ] attach async work to the window and have React component follow up on it
-	- [ ] see `Assets/plugins/C~.jslib` for method call when game finishes loading
 
 ### visualization and logic
 - [ ] print text displaying "you" as older/younger brother/sister
