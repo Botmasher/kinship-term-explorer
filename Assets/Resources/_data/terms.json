@@ -74,10 +74,10 @@
 		"MZ": "naya",
 		"FB": "haya",
 		"FZ": "yesiya",
-		"FF": "shoape?",
-		"FM": "yesi?",
-		"MF": "shoape?",
-		"MM": "yesi?",
+		"FF": "shoape",
+		"FM": "yesi",
+		"MF": "shoape",
+		"MM": "yesi",
 		"MBS": "soriwa",
 		"MBD": "suaboya",
 		"MZS": "eiwa",
@@ -165,10 +165,10 @@
 		"MZ": "ena",
 		"FB": "agya",
 		"FZ": "agyawa",
-		"FF": "nanabanin?",
-		"FM": "nanabea?",
-		"MF": "nanabanin?",
-		"MM": "nanabea?",
+		"FF": "nanabanin",
+		"FM": "nanabea",
+		"MF": "nanabanin",
+		"MM": "nanabea",
 		"MBS": "wofaba",
 		"MBD": "wofaba",
 		"MZS": "nua",
@@ -199,7 +199,7 @@
 		"MM": "kupuna",
 		"MBS": {
 			"M": "kaikuaʻana",
-			"F": "kaikuāne"
+			"F": "kaikunāne"
 		},
 		"MBD": {
 			"M": "kaikuahine",
@@ -207,7 +207,7 @@
 		},
 		"MZS": {
 			"M": "kaikuaʻana",
-			"F": "kaikuāne"
+			"F": "kaikunāne"
 		},
 		"MZD": {
 			"M": "kaikuahine",
@@ -215,7 +215,7 @@
 		},
 		"FBS": {
 			"M": "kaikuaʻana",
-			"F": "kaikuāne"
+			"F": "kaikunāne"
 		},
 		"FBD": {
 			"M": "kaikuahine",
@@ -223,7 +223,7 @@
 		},
 		"FZS": {
 			"M": "kaikuaʻana",
-			"F": "kaikuāne"
+			"F": "kaikunāne"
 		},
 		"FZD": {
 			"M": "kaikuahine",
