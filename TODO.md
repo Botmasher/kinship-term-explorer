@@ -66,17 +66,7 @@
 	- [X] arrange data to handle terms marked relative to state of ego
 		- [X] f vs m terms, like `"Z": "F": {}` (sister term if EGO is F)
 		- [X] implement by comparing data, member nodes and ego node when labeling in node manager
-- [ ] cite sources (for now to be handled in frontend)
-	- [ ] https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/termsys.html
-	- [ ] Wiktionary
-	- [ ] wehewehe.org
-	- [ ] _Lengua y cultura Yanomami_ for proposed grandparent terms
-	- [ ] http://www.twi.bb/ for proposed grandparent terms
-	- [ ] explain: many cultural complications behind the simple terms used here, e.g. for [Igbo](https://umanitoba.ca/faculties/arts/anthropology/tutor/kinterms/igbo_terms.html)
-	- [ ] Navajo:
-		- http://www.unco.edu/library/pdf/Navajo_English_Dictionary.pdf
-		- https://anthrosource.onlinelibrary.wiley.com/doi/pdf/10.1525/aa.1970.72.6.02a00190
-		- http://navajopeople.org/blog/ke-dine-navajo-kinship-system/
+- [X] cite sources (now handled in frontend)
 
 ## Testing
 - [ ] set up tests
@@ -117,6 +107,10 @@
 	- [ ] sprite animations for FSM transitions
 
 ### data
+- [ ] rework `NodesManager` to take in terms data from external app
+	- [X] draft a `SetMemberLabel` function to relabel individual family members
+	- [ ] account for marked terms (currently handled with M/F keys nested within types in the JSON)
+	- [ ] try messaging this function externally
 - [ ] ability to add notes to display next to data
 	- [ ] example: Hawaiʻian terms given are basic but often "wahine" or "kāne" is tacked on
 	- [ ] example: Hawaiʻian terms also distinguish sibling age

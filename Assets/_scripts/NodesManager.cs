@@ -10,22 +10,14 @@ public class NodesManager : MonoBehaviour {
 	// world member node objects
 	Dictionary<string, GameObject> family;
 
+	Dictionary<string, string> labels = new Dictionary<string, string> ();
+
 	// parsed JSON data mapping kin types to terms (labels in languages)
 	JSONNode labelsData;
 
 	// map for relating same terms to same colors
 	Dictionary<string, Color> assignedColors;
 	List<Color> colors;
-
-	// language name found in source data
-	string language = "";
-
-	void Start () {
-		// parsing kin type-term labels
-		string path = Path.Combine("_data", "terms");
-		TextAsset jsonFile = Resources.Load<TextAsset> (path); 	// ./Assets/Resources/_data/terms.json
-		this.labelsData = JSON.Parse(jsonFile.text);
-	}
 
 	public void SetFamily (Dictionary<string, GameObject> family) {
 		this.family = family;
@@ -34,6 +26,17 @@ public class NodesManager : MonoBehaviour {
 		this.family ["ego"].GetComponent<FamilyMember> ().OnSexMarking += NodeChangeHandler;
 		// delay labeling so JSON can finish parsing first
 		StartCoroutine ("DelayLabelFamilyWithData");
+	}
+
+	// TODO use labels
+	public bool SetMemberLabel (string[] typeTermPair) {
+		if (typeTermPair.Length != 2 || !labels.ContainsKey(typeTermPair[0])) {
+			return false;
+		}
+		string type = typeTermPair [0];
+		string term = typeTermPair [1];
+		this.labels [type] = term;
+		return true;
 	}
 
 	// initially wait for loaded data and all instantiated members
@@ -45,12 +48,10 @@ public class NodesManager : MonoBehaviour {
 
 	// handle relabeling based on node state (principally ego) changes
 	private void NodeChangeHandler () {
-		this.LabelFamilyMembers (this.language);
+		this.LabelFamilyMembers ();
 	}
 
-	public void LabelFamilyMembers (string languageName="Primary") {
-		// set the node language
-		this.language = languageName;
+	public void LabelFamilyMembers () {
 
 		// track used colors for same labels
 		this.assignedColors = new Dictionary<string, Color> ();
@@ -92,7 +93,7 @@ public class NodesManager : MonoBehaviour {
 
 			currentMember = entry.Value.GetComponent<FamilyMember> ();
 
-			currentData = this.labelsData [this.language][entry.Key.ToUpper ()];
+			currentData = this.labels [entry.Key];
 
 			// set terms marked relative to ego if they exist in this language
 			// principally to correctly display cross-marked terms in Hawaiian type
