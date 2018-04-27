@@ -48,11 +48,17 @@ Once you have the project open, take a look. A rule of thumb if you're new to Un
 		- these methods are made available to call from the C# scripts in `_scripts/`
 	- add or edit language terms in the JSON data at `./Assets/Resources/_data/terms.json`
 
-## Project code
+## Source code
 
 This visualization was developed with Unity version `2017.2.0`. The core project behaviors are found under `./Assets/_scripts`. The kinship labels are stored per language in a JSON object within `/Assets/Resources/_data`.
 
 The game builds a static tree of family members, parses the JSON data, colors and labels family member objects based on data, and updates the members based on user interactions.
+
+## Feature Branches
+
+The `master` branch currently stores the production build running inside the live frontend. It houses the terms data internally, parses the JSON and updates the visualization based on the language name passed into `NodesManager`.
+
+Work has begun on an `external-terms-data` branch. This code will strip out reliance on internal terms data, await passed-in terms from an external app, update the tree based on those terms and respond with critical state pieces relevant to external access (things like EGO marking to allow for age terms). The same or other state pieces will also need to be messaged back to external on visualization state changes unless branching based on family member state is to happen entirely within the game logic.
 
 ## Contributing
 
